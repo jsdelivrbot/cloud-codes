@@ -1,7 +1,7 @@
 {
-  "name": "Oceanbees",
-  "version": "1.0.1",
-  "description": "Oceanbees website",
+  "name": "paper",
+  "version": "1.0.0",
+  "description": "Drasperry Paper, the web designing wing",
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
