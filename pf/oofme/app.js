@@ -5,9 +5,19 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var mongoose = require('mongoose');
+
+var passport = require('passport');
+var flash    = require('connect-flash');
+
+var configDB = require('./custom_modules/config/databse.js');
+mongoose.connect(configDB.url);
+
+require('./config/passport')(passport); // pass passport for configuration
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var auth = require('./routes/auth');
 
 var app = express();
 
@@ -28,10 +38,16 @@ app.use(session({
   secret: "IStartedLovingHer",
   resave: false,
   saveUninitialized: true
-}))
+}));
+
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash());
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/auth', auth(passport));
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

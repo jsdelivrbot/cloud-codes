@@ -7,7 +7,4 @@ router.get('/', function(req, res, next) {
 	res.sendFile('land.html', { root: path.join(__dirname, '../views') });
 });
 
-router.post('/auth/google/storeauthcode', function(req, res){
-	console.log(req.body);
-})
 module.exports = router;

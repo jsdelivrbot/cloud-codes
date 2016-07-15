@@ -5,71 +5,15 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Oofme</title>
-
-	<!-- BEGIN Pre-requisites for Google Auth -->
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js">
-	</script>
-	<script src="https://apis.google.com/js/client:platform.js?onload=start" async defer>
-	</script>
-	<!-- END Pre-requisites -->
-	<script>
-	function start() {
-		gapi.load('auth2', function() {
-			auth2 = gapi.auth2.init({
-				client_id: '992052124387-ivjgr69teciklhiga8em2p2lgmak3tec.apps.googleusercontent.com',
-				// Scopes to request in addition to 'profile' and 'email'
-				//scope: 'additional_scope'
-			});
-		});
-	}
-	</script>
 </head>
 
 <body>
-	<div>
-		<header>
-			<h1>Oofme</h1>
-		</header>
-		<hr>
-		<!-- Add where you want your sign-in button to render -->
-		<!-- Use an image that follows the branding guidelines in a real app -->
-		<button id="signinButton">Sign in with Google</button>
-		<script>
-		$('#signinButton').click(function() {
-			// signInCallback defined in step 6.
-			auth2.grantOfflineAccess({
-				'redirect_uri': 'postmessage'
-			}).then(signInCallback);
-		});
-		</script>
-	</div>
+	<header>
+		<h1>Oofme</h1>
+	</header>
+	<!-- /header -->
+	<hr>
 
-
-	<!-- Last part of BODY element in file index.html -->
-	<script>
-	function signInCallback(authResult) {
-		if (authResult['code']) {
-
-			// Hide the sign-in button now that the user is authorized, for example:
-			$('#signinButton').attr('style', 'display: none');
-
-			// Send the code to the server
-
-			$.ajax({
-				type: 'POST',
-				url: 'http://localhost:3001/auth/google/storeauthcode',
-				dataType: "json",
-				success: function(result) {
-					// Handle or verify the server response.
-				},
-				processData: false,
-				data: authResult['code']
-			});
-		} else {
-			// There was an error.
-		}
-	}
-	</script>
 </body>
 
 </html>
