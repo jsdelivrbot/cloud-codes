@@ -4,16 +4,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var passport = require('passport');
-var session = require('express-session');
-var mongoose = require('mongoose');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-
-var configDB = require('./custom_modules/config/configDB');
-
-mongoose.connect(configDB.url);
 
 var app = express();
 
@@ -28,18 +21,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-// setting secret for session
-app.use(session({
-  secret: 'lovemelikeyoudo',
-  resave: true,
-  saveUninitialized: false
-}));
-
-// configure passport
-app.use(passport.initialize());
-app.use(passport.session());
-require('./custom_modules/config/passport')(passport); // pass passport 
 
 app.use('/', routes);
 app.use('/users', users);
