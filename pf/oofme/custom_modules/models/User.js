@@ -15,7 +15,9 @@ var userSchema = mongoose.Schema({
 		id: String,
 		token: String,
 		displayName: String,
-		username: String
+		username: String,
+		photo: String,
+		lastUpdatedOn: Date
 	},
 	google: {
 		id: String,

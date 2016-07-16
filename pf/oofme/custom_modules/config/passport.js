@@ -1,8 +1,10 @@
 // passport config.s.
 // 
 var passport = require('passport');
+
 // var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
+var TwitterStrategy = require('passport-twitter').Strategy;
 
 // load up the user model
 var User = require('../models/User.js');
@@ -27,6 +29,74 @@ module.exports = function(passport) {
 	// code for login (use('local-login', new LocalStategy))
 	// code for signup (use('local-signup', new LocalStategy))
 
+	// // =========================================================================
+	// // TWITTER =================================================================
+	// // =========================================================================
+	passport.use(new TwitterStrategy({
+
+			consumerKey: configAuth.twitterAuth.consumerKey,
+			consumerSecret: configAuth.twitterAuth.consumerSecret,
+			callbackURL: configAuth.twitterAuth.callbackURL
+
+		},
+
+		// twitter will send back the token and profile
+		function(token, tokenSecret, profile, done) {
+			// make the code asynchronous
+			// User.findOne won't fire until we have all our data back from Twitter
+			process.nextTick(function() {
+
+				User.findOne({ 'twitter.id': profile.id }, function(err, user) {
+
+					// if there is an error, stop everything and return that
+					// ie an error connecting to the database
+					if (err)
+						return done(err);
+
+					// if the user is found then log them in
+					if (user) {
+
+						// update all of the user data that we need
+						user.twitter.id = profile.id;
+						user.twitter.token = token;
+						user.twitter.username = profile.username;
+						user.twitter.displayName = profile.displayName;
+						user.twitter.lastUpdatedOn = Date.now();
+						user.twitter.photo = profile.profile_image_url_https;
+
+						// save our user into the database
+						user.save(function(err) {
+							if (err)
+								throw err;
+
+							// user found, return that user
+							return done(null, user);
+						});
+
+					} else {
+						// if there is no user, create them
+						var newUser = new User();
+
+						console.log(JSON.stringify(profile, null, 4));
+
+						// set all of the user data that we need
+						newUser.twitter.id = profile.id;
+						newUser.twitter.token = token;
+						newUser.twitter.username = profile.username;
+						newUser.twitter.displayName = profile.displayName;
+						newUser.twitter.lastUpdatedOn = Date.now();
+						newUser.twitter.photo = profile.photos[0].value;
+
+						// save our user into the database
+						newUser.save(function(err) {
+							if (err)
+								throw err;
+							return done(null, newUser);
+						});
+					}
+				});
+			});
+		}));
 	// =========================================================================
 	// FACEBOOK ================================================================
 	// =========================================================================
