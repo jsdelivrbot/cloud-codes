@@ -15,10 +15,6 @@ mongoose.connect(configDB.url);
 
 require('./custom_modules/config/passport')(passport); // pass passport for configuration
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
-var auth = require('./routes/auth')(passport);
-
 var app = express();
 
 // view engine setup
@@ -40,9 +36,15 @@ app.use(session({
   saveUninitialized: true
 }));
 
+// configure passport
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash());
+
+// making routes
+var routes = require('./routes/index');
+var users = require('./routes/users');
+var auth = require('./routes/auth')(passport);
 
 app.use('/', routes);
 app.use('/users', users);
