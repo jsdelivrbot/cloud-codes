@@ -51,7 +51,22 @@ module.exports = function(passport) {
 					if (user) {
 
 						// if a user is found, log them in
-						return done(null, user);
+						
+						// update all of the relevant information
+						user.google.id = profile.id;
+						user.google.token = token;
+						user.google.name = profile.displayName;
+						user.google.email = profile.emails[0].value; // pull the first email
+						user.google.photo = profile.photos[0].value; // pull the first email
+						user.google.lastUpdatedOn = Date.now(); // pull the first email
+
+						// update the user
+						user.save(function(err) {
+							if (err)
+								throw err;
+							return done(null, user);
+						});
+
 					} else {
 						// if the user isnt in our database, create a new user
 						var newUser = new User();
@@ -62,8 +77,8 @@ module.exports = function(passport) {
 						newUser.google.id = profile.id;
 						newUser.google.token = token;
 						newUser.google.name = profile.displayName;
-						// newUser.google.email = profile.emails[0].value; // pull the first email
-						// newUser.google.photo = profile.; // pull the first email
+						newUser.google.email = profile.emails[0].value; // pull the first email
+						newUser.google.photo = profile.photos[0].value; // pull the first email
 						newUser.google.lastUpdatedOn = Date.now(); // pull the first email
 
 						// save the user
