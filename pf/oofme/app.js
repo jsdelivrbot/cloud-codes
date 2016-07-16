@@ -13,11 +13,11 @@ var flash    = require('connect-flash');
 var configDB = require('./custom_modules/config/databse.js');
 mongoose.connect(configDB.url);
 
-require('./config/passport')(passport); // pass passport for configuration
+require('./custom_modules/config/passport')(passport); // pass passport for configuration
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var auth = require('./routes/auth');
+var auth = require('./routes/auth')(passport);
 
 var app = express();
 
@@ -46,7 +46,7 @@ app.use(flash());
 
 app.use('/', routes);
 app.use('/users', users);
-app.use('/auth', auth(passport));
+app.use('/auth', auth);
 
 
 // catch 404 and forward to error handler

@@ -4,11 +4,15 @@ var express = require('express');
 var router = express.Router();
 
 
-router.get('/facebook', passport.authenticate('facebook', { scope: 'email' })));
+module.exports = function(passport) {
 
-// handle the callback after facebook has authenticated the user
-app.get('/facebook/callback', passport.authenticate('facebook', {
-	successRedirect: '/profile',
-	failureRedirect: '/'
-}));
-module.exports = router;
+	router.get('/facebook', passport.authenticate('facebook', { scope: 'public_profile' }));
+
+	// handle the callback after facebook has authenticated the user
+	router.get('/facebook/callback', passport.authenticate('facebook', {
+		successRedirect: '/profile',
+		failureRedirect: '/'
+	}));
+
+	return router;
+}

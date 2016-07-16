@@ -2,6 +2,6 @@
 
 module.exports = {
 
-	'url': 'mongodb://192.168.1.61:27017'
+	'url': 'mongodb://localhost:27017/oofme'
 
 };
