@@ -4,8 +4,8 @@ module.exports = {
 
 	// of Google
 	googleAuth: {
-		clientID: '992052124387-ivjgr69teciklhiga8em2p2lgmak3tec.apps.googleusercontent.com',
-		clientSecret: 'qpeuRYVOJCsEWfh1x9bTJFbi',
+		clientID: '536848586495-8clt37mrkarom295b06p53ohi4n7segq.apps.googleusercontent.com',
+		clientSecret: '1u_HGnBKcrYi3pXN3qUPJWWn',
 		callbackURL: 'http://localhost:3001/auth/google/callback'
 	},
 	// of facebook

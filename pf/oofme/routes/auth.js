@@ -23,7 +23,7 @@ module.exports = function(passport) {
 	}));
 
 	// auth with Google
-	router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+	router.get('/google', passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] }));
 	// the callback after google has authenticated the user
 	router.get('/google/callback', passport.authenticate('google', {
 		successRedirect: '/profile',
