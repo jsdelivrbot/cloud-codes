@@ -56,12 +56,31 @@ module.exports = function(passport) {
 
 					// if the user is found, then log them in
 					if (user) {
-						return done(null, user); // user found, return that user
+
+						console.log(JSON.stringify(user, null, 4));
+
+						user.facebook.id = profile.id; // set the users facebook id                   
+						user.facebook.token = token; // we will save the token that facebook provides to the user                    
+						user.facebook.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
+						user.facebook.name = profile.displayName; // look at the passport user profile to see how names are returned
+						user.facebook.photo = profile.photos[0].value;
+						user.facebook.lastUpdatedOn = Date.now();
+
+						// update our user to the database
+						user.save(function(err) {
+							if (err)
+								throw err;
+
+							console.log("updated");
+							// if successful, return the new user
+							return done(null, user);
+						});
+
 					} else {
 						// if there is no user found with that facebook id, create them
 						var newUser = new User();
 
-						console.log(console.log(JSON.stringify(profile, null, 4)));
+						console.log(JSON.stringify(profile, null, 4));
 
 						// set all of the facebook information in our user model
 						newUser.facebook.id = profile.id; // set the users facebook id                   
@@ -69,7 +88,7 @@ module.exports = function(passport) {
 						newUser.facebook.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
 						newUser.facebook.name = profile.displayName; // look at the passport user profile to see how names are returned
 						newUser.facebook.photo = profile.photos[0].value;
-						newUser.facebook.lastUpdate = Date.now();
+						newUser.facebook.lastUpdatedOn = Date.now();
 
 						// save our user to the database
 						newUser.save(function(err) {
