@@ -22,6 +22,13 @@ module.exports = function(passport) {
 		failureRedirect: '/'
 	}));
 
+	// auth with Google
+	router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+	// the callback after google has authenticated the user
+	router.get('/google/callback', passport.authenticate('google', {
+		successRedirect: '/profile',
+		failureRedirect: '/'
+	}));
 
 	return router;
 }
