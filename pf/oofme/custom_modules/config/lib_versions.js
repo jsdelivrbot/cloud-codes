@@ -10,11 +10,11 @@ module.exports = {
 	angular_animate: "1.5.7",
 
 	// Angular-Area
-	angular_area: "1.5.7",
+	angular_aria: "1.5.7",
 
 	// Angular-Messages
 	angular_messages: "1.5.7",
 
 	// Angular-Matrial
-	angular_material: "1.1.0"
+	angular_material: "1.1.0-rc.5"
 };

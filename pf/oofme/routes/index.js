@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
 		title: "oofme",
 		v_angularjs: libV.angularJS,
 		v_angularMaterial: libV.angular_material,
-		v_angularArea: libV.angular_area,
+		v_angularAria: libV.angular_aria,
 		v_angularAnimate: libV.angular_animate,
 		v_angularMessages: libV.angular_messages
 	});
