@@ -1,1 +1,1 @@
-console.log("reporitng");
+angular.module('oofme', ['ngMaterial']);

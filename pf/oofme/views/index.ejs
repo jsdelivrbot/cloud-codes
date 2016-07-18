@@ -19,8 +19,21 @@
 	<link rel="stylesheet" href="">
 </head>
 
-<body>
-<p>hello</p>
+<body ng-app="oofme" layout="column">
+
+	<!-- toolbar -->
+	<md-toolbar layout="row">
+		<h1>oofme</h1>
+	</md-toolbar>
+
+	<!-- container -->
+	<div flex layout="row">
+		<!-- sidebar -->
+		<md-sidenav md-is-locked-open="true" class="md-whiteframe-z2"></md-sidenav>
+		
+		<!-- CONTENT -->
+		<md-content flex id="content"></md-content>
+	</div>
 
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/<%= v_angularAnimate %>/angular-animate.min.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/<%= v_angularAria %>/angular-aria.min.js"></script>
