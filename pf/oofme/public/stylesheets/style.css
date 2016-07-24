@@ -1,8 +1,8 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
+@media (min-width: 600px) {
+	md-sidenav,
+	md-sidenav.md-locked-open,
+	md-sidenav.md-closed.md-locked-open-add-active {
+		min-width: 240px !important;
+		width: auto !important;
+	}
 }
