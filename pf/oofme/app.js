@@ -43,11 +43,11 @@ app.use(flash());
 
 // making routes
 var routes = require('./routes/index');
-var users = require('./routes/users');
+var templates = require('./routes/templates');
 var auth = require('./routes/auth')(passport);
 
 app.use('/', routes);
-app.use('/users', users);
+app.use('/templates', templates);
 app.use('/auth', auth);
 
 

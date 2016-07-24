@@ -5,7 +5,7 @@ angular.module('oofme', ['ngMaterial'])
 				var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
 				$mdDialog.show({
 						controller: DialogController,
-						templateUrl:'/templ/createNewProj' ,
+						templateUrl:'/templates/createNewProj' ,
 						parent: angular.element(document.body),
 						targetEvent: ev,
 						clickOutsideToClose: true,
