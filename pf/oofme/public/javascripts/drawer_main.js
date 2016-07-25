@@ -1,44 +1,64 @@
 angular.module('oofme', ['ngMaterial'])
-	.controller('appCtrl', function($scope, $mdDialog, $mdMedia, $mdToast) {
 
-		// Start projec - dialog
-		$scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
-		$scope.projectNamePrompt = function(ev) {
-			var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
-			$mdDialog.show({
-					controller: DialogController,
-					templateUrl: '/templates/createNewProj',
-					parent: angular.element(document.body),
-					targetEvent: ev,
-					clickOutsideToClose: true,
-					fullscreen: useFullScreen
-				})
-				.then(function(answer) {
-					// $scope.status = 'You said the information was "' + answer + '".';
-					// showSimpleToast('Creating');
-				}, function() {
-					// $scope.status = 'You cancelled the dialog.';
-					showSimpleToast('Cancelled');
-				});
-			$scope.$watch(function() {
-				return $mdMedia('xs') || $mdMedia('sm');
-			}, function(wantsFullScreen) {
-				$scope.customFullscreen = (wantsFullScreen === true);
+// controller
+.controller('appCtrl', ['$scope', '$mdDialog', '$mdMedia', 'store', function($scope, $mdDialog, $mdMedia, store) {
+
+	// Start projec - dialog
+	$scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
+	$scope.projectNamePrompt = function(ev) {
+		var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
+		$mdDialog.show({
+				controller: DialogController,
+				templateUrl: '/templates/createNewProj',
+				parent: angular.element(document.body),
+				targetEvent: ev,
+				clickOutsideToClose: true,
+				fullscreen: useFullScreen
+			})
+			.then(function(answer) {
+				// $scope.status = 'You said the information was "' + answer + '".';
+				// $scope.toastMessage = answer;
+				store.showSimpleToast(answer);
+			}, function() {
+				// $scope.status = 'You cancelled the dialog.';
+				// $scope.toastMessage = 'Cancelled';
+				store.showSimpleToast('Cancelled');
 			});
+		$scope.$watch(function() {
+			return $mdMedia('xs') || $mdMedia('sm');
+		}, function(wantsFullScreen) {
+			$scope.customFullscreen = (wantsFullScreen === true);
+		});
 
-			// Toast function
-			var showSimpleToast = function(message) {
+	};
+}])
+
+// store factory
+.factory('store', ['$mdToast', function($mdToast) {
+	return {
+		showSimpleToast: function(toastMessage) {
+			if (toastMessage)
 				$mdToast.show(
 					$mdToast.simple()
-					.textContent(message)
+					.textContent(toastMessage)
 					.position('bottom left')
 					.hideDelay(2000)
-				);
-			};
+				)
+				// $scope.message = toastMessage;
+				// console.log($scope.message);
+		}
+	}
+}]);
 
-
-		};
-	});
+// // Toast function
+// function showSimpleToast($scope, $mdToast) {
+// 	$mdToast.show(
+// 		$mdToast.simple()
+// 		.textContent($scope.toastMessage)
+// 		.position('bottom left')
+// 		.hideDelay(2000)
+// 	);
+// };
 
 function DialogController($scope, $mdDialog) {
 	$scope.hide = function() {
