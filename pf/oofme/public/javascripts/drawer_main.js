@@ -36,6 +36,8 @@ angular.module('oofme', ['ngMaterial'])
 // store factory
 .factory('store', ['$mdToast', function($mdToast) {
 	return {
+
+		// For Toasting a message
 		showSimpleToast: function(toastMessage) {
 			if (toastMessage)
 				$mdToast.show(
@@ -43,22 +45,11 @@ angular.module('oofme', ['ngMaterial'])
 					.textContent(toastMessage)
 					.position('bottom left')
 					.hideDelay(2000)
-				)
-				// $scope.message = toastMessage;
-				// console.log($scope.message);
-		}
+				);
+		},
+
 	}
 }]);
-
-// // Toast function
-// function showSimpleToast($scope, $mdToast) {
-// 	$mdToast.show(
-// 		$mdToast.simple()
-// 		.textContent($scope.toastMessage)
-// 		.position('bottom left')
-// 		.hideDelay(2000)
-// 	);
-// };
 
 function DialogController($scope, $mdDialog) {
 	$scope.hide = function() {
