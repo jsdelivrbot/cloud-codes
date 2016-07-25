@@ -1,7 +1,25 @@
-angular.module('oofme', ['ngMaterial'])
+angular.module('oofme', ['ngMaterial', 'ui.router'])
+
+.config(function($stateProvider, $urlRouterProvider) {
+	// for any unmatched url, redirect to the default.
+	$urlRouterProvider.otherwise("/");
+
+	// srtup states
+	$stateProvider
+		.state('balloon', {
+			url: "/balloon",
+			templateUrl: "/templated/balloon-card.html",
+			controller: 'balloonCtrl',
+		})
+		.state('dash',{
+			url:"/",
+			templateUrl:"/templated/all-projects.html"
+		})
+		;
+})
 
 // controller
-.controller('appCtrl', ['$scope', '$mdDialog', '$mdMedia', 'store', function($scope, $mdDialog, $mdMedia, store) {
+.controller('balloonCtrl', ['$scope', '$mdDialog', '$mdMedia', 'store', function($scope, $mdDialog, $mdMedia, store) {
 
 	// Start projec - dialog
 	$scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
@@ -9,7 +27,7 @@ angular.module('oofme', ['ngMaterial'])
 		var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
 		$mdDialog.show({
 				controller: DialogController,
-				templateUrl: '/templates/createNewProj',
+				templateUrl: '/templated/create-new-project.html',
 				parent: angular.element(document.body),
 				targetEvent: ev,
 				clickOutsideToClose: true,
@@ -33,10 +51,9 @@ angular.module('oofme', ['ngMaterial'])
 	};
 }])
 
-// store factory
-.factory('store', ['$mdToast', function($mdToast) {
+// // store factory
+.factory('store', ['$mdToast', '$http', function($mdToast, $http) {
 	return {
-
 		// For Toasting a message
 		showSimpleToast: function(toastMessage) {
 			if (toastMessage)

@@ -25,7 +25,7 @@
 
 </head>
 
-<body ng-app="oofme" ng-controller="appCtrl" layout="column" ng-cloak>
+<body ng-app="oofme" layout="column" ng-cloak>
 
 	<!-- toolbar -->
 	<md-toolbar layout="row">
@@ -79,27 +79,13 @@
 
 		<!-- CONTENT -->
 		<md-content flex id="content">
-			<md-grid-list md-cols="5" md-row-height="390px">
-				<md-grid-tile style="background-color: ;" md-rowspan="1" md-colspan="2">
-					
-					<!-- card is shown when there is no projects. -->
-					<md-card>
-						<img src="images/balloon.jpg" class="md-card-image" alt="begin">
-						<md-card-content>
-							<h2>Hi there</h2>
-							<p>You don't have any projects yet. We'll help you to create new one.</p>
-						</md-card-content>
-						<md-card-actions layout="row" layout-align="end center">
-							<md-button style="margin-right: 5px;" href="/getting-started">Learn</md-button>
-							<md-button class="md-raised md-primary" ng-click="projectNamePrompt($event)">Create Project</md-button>
-						</md-card-actions>
-					</md-card>
-				</md-grid-tile>
+			<div ui-view></div>
 		</md-content>
 	</div>
 
 	<!-- Angular JS -->
 	<script src="/node_modules/angular/angular.min.js" type="text/javascript"></script>
+	<script src="/node_modules/angular-ui-router/release/angular-ui-router.min.js" type="text/javascript"></script>
 	<script src="/node_modules/angular-animate/angular-animate.min.js"></script>
 	<script src="/node_modules/angular-aria/angular-aria.min.js"></script>
 	<script src="/node_modules/angular-messages/angular-messages.min.js"></script>

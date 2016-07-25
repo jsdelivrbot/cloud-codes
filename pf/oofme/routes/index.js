@@ -25,6 +25,9 @@ router.get('/u', function(req, res){
 	res.sendFile('land.html', { root: path.join(__dirname, '../views') });
 });
 
+router.get('/projects', function(req, res){
+	res.send("hi");
+});
 // router.get('/templ/createNewProj', function(req, res){
 // 	res.sendFile('create-new-project.templ.html', { root: path.join(__dirname, '../views/templates/') });
 // });
