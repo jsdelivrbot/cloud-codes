@@ -13,13 +13,27 @@ angular.module('oofme', ['ngMaterial', 'ui.router'])
 		})
 		.state('dash',{
 			url:"/",
-			templateUrl:"/templated/all-projects.html"
+			templateUrl:"/templated/all-projects.html",
+			controller: "allProjectsCtrl",
+			resolve: {
+				// get project list
+				initialData: function($http){
+					$http.get('/apis/initializeMe')
+					.then(function(response){
+						return response.data;
+					})
+				}
+			}
 		})
 		;
 })
 
+.controller('allProjectsCtrl', ['$scope', 'initialData' 'Store', function($scope, initialData, Store){
+
+}])
+
 // controller
-.controller('balloonCtrl', ['$scope', '$mdDialog', '$mdMedia', 'store', function($scope, $mdDialog, $mdMedia, store) {
+.controller('balloonCtrl', ['$scope', '$mdDialog', '$mdMedia', 'Store', function($scope, $mdDialog, $mdMedia, Store) {
 
 	// Start projec - dialog
 	$scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
@@ -36,11 +50,11 @@ angular.module('oofme', ['ngMaterial', 'ui.router'])
 			.then(function(answer) {
 				// $scope.status = 'You said the information was "' + answer + '".';
 				// $scope.toastMessage = answer;
-				store.showSimpleToast(answer);
+				Store.showSimpleToast(answer);
 			}, function() {
 				// $scope.status = 'You cancelled the dialog.';
 				// $scope.toastMessage = 'Cancelled';
-				store.showSimpleToast('Cancelled');
+				Store.showSimpleToast('Cancelled');
 			});
 		$scope.$watch(function() {
 			return $mdMedia('xs') || $mdMedia('sm');
@@ -51,8 +65,8 @@ angular.module('oofme', ['ngMaterial', 'ui.router'])
 	};
 }])
 
-// // store factory
-.factory('store', ['$mdToast', '$http', function($mdToast, $http) {
+// // Store factory
+.factory('Store', ['$mdToast', '$http', function($mdToast, $http) {
 	return {
 		// For Toasting a message
 		showSimpleToast: function(toastMessage) {

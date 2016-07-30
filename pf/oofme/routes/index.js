@@ -28,6 +28,36 @@ router.get('/u', function(req, res){
 router.get('/projects', function(req, res){
 	res.send("hi");
 });
+
+router.get('/apis/initializeMe', function(req, res){
+	res.send(initialData);
+});
+
+var initialData = {
+	projects:[
+		{
+			id: 1,
+			name: "Oceanbees",
+			des: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas natus id velit, esse sequi ",
+			isPublished: true,
+		},{
+			id: 2,
+			name: "Facebook",
+			des: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas natus id velit, esse sequi ",
+			isPublished: true,
+		},{
+			id: 3,
+			name: "Good Methods",
+			des: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas natus id velit, esse sequi ",
+			isPublished: true,
+		},{
+			id: 4,
+			name: "Accenture",
+			des: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas natus id velit, esse sequi ",
+			isPublished: true,
+		}
+	]
+}
 // router.get('/templ/createNewProj', function(req, res){
 // 	res.sendFile('create-new-project.templ.html', { root: path.join(__dirname, '../views/templates/') });
 // });
