@@ -1,36 +1,72 @@
 <div layout="column" layout-fill>
-<style type="text/css">
-	.icobut{
-		min-width:50px;
+	<style type="text/css">
+	.icobut {
+		min-width: 50px;
 	}
-</style>
+	</style>
+	<link rel="stylesheet" type="text/css" href="stylesheets/bootstrap-tables.css">
 	<md-toolbar>
 		<div class="md-toolbar-tools">
 			<span>All Projects</span>
 			<span style="width: 40px;"> </span>
 			<!-- fill up the space between left and right area -->
-			<md-button class="md-accent md-raised"><md-icon>add</md-icon> New project</md-button>
-			<md-button><md-icon>refresh</md-icon> refresh</md-button>
-			<md-button><md-icon>delete</md-icon> delete</md-button>
+			<md-button class="md-accent md-raised">
+				<md-icon>add</md-icon> New project</md-button>
+			<md-button>
+				<md-icon>refresh</md-icon> refresh</md-button>
+			<md-button>
+				<md-icon>delete</md-icon> delete</md-button>
 			<span flex></span>
 		</div>
 	</md-toolbar>
 	<md-content>
-		<table>
+		<table class="table">
 			<caption>table title and/or explanatory text</caption>
 			<thead>
 				<tr>
-					<th>Select</th>
-					<th>Pro</th>
+					<th>
+						<md-checkbox aria-label="Select All" ng-checked="false" md-indeterminate="true" ng-click=""></md-checkbox>
+					</th>
+					<th>Projects</th>
+					<th>Description</th>
+					<th>Quick Edit</th>
 
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td>data</td>
+					<td>
+						<md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects"></md-checkbox>
+					</td>
+					<td>Oceanbees</td>
+					<td>Web designing com</td>
+					<td>
+						<md-icon>mode_edit</md-icon>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects"></md-checkbox>
+					</td>
+					<td>Oceanbees</td>
+					<td>Web designing com</td>
+					<td>
+						<md-icon>mode_edit</md-icon>
+					</td>
+				</tr>
+				<tr>
+
+					<td>
+						<md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects"></md-checkbox>
+					</td>
+					<td>Oceanbees</td>
+					<td>Web designing com</td>
+					<td>
+						<md-icon>mode_edit</md-icon>
+					</td>
 				</tr>
 			</tbody>
-		</table>
+		</table>		
 
 	</md-content>
 </div>

@@ -6,3 +6,8 @@
 		width: auto !important;
 	}
 }
+
+table th md-checkbox,
+table tr md-checkbox{
+	margin-bottom:0px;
+}
