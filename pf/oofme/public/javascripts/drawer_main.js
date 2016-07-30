@@ -11,24 +11,38 @@ angular.module('oofme', ['ngMaterial', 'ui.router'])
 			templateUrl: "/templated/balloon-card.html",
 			controller: 'balloonCtrl',
 		})
-		.state('dash',{
-			url:"/",
-			templateUrl:"/templated/all-projects.html",
+		.state('dash', {
+			url: "/",
+			templateUrl: "/templated/all-projects.html",
 			controller: "allProjectsCtrl",
 			resolve: {
 				// get project list
-				initialData: function($http){
-					$http.get('/apis/initializeMe')
-					.then(function(response){
-						return response.data;
-					})
+				initialData: function($http) {
+					return $http.get('/apis/initializeMe')
+						.then(function(response) {
+							// console.log(JSON.stringify(response.data));
+							return response.data;
+						});
 				}
 			}
-		})
-		;
+		});
 })
 
-.controller('allProjectsCtrl', ['$scope', 'initialData' 'Store', function($scope, initialData, Store){
+.controller('allProjectsCtrl', ['$scope', 'initialData', 'Store', function($scope, initialData, Store) {
+	Store.allProjects = initialData.projects;
+	$scope.projects = Store.allProjects;
+	// console.log(Store);
+	$scope.isChecked = function(projectID){
+		return Store.checkedList.indexOf(projectID)>-1;
+	};
+	$scope.toggleCheck = function(projectID){
+		var idx = Store.checkedList.indexOf(projectID);
+		if(idx > -1){
+			Store.checkedList.splice(idx, 1);
+		}else{
+			Store.checkedList.push(projectID);
+		}
+	}
 
 }])
 
@@ -78,7 +92,7 @@ angular.module('oofme', ['ngMaterial', 'ui.router'])
 					.hideDelay(2000)
 				);
 		},
-
+		checkedList:[1,2]
 	}
 }]);
 

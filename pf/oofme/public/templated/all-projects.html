@@ -29,41 +29,22 @@
 							<md-checkbox aria-label="Select All" ng-checked="false" md-indeterminate="true" ng-click=""></md-checkbox>
 						</th>
 						<th>Projects</th>
-						<th>Description</th>
 						<th>Quick Edit</th>
+						<th>Delete</th>
 
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
+					<tr ng-repeat="project in projects">
 						<td>
-							<md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects"></md-checkbox>
+							<md-checkbox ng-checked="isChecked(project.id)" ng-click="toggleCheck(project.id)" md-no-ink aria-label="No Ink Effects"></md-checkbox>
 						</td>
-						<td>Oceanbees</td>
-						<td>Web designing com</td>
+						<td><md-button class="md-primary">{{project.name}}</md-button></td>
 						<td>
 							<md-icon>mode_edit</md-icon>
 						</td>
-					</tr>
-					<tr>
 						<td>
-							<md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects"></md-checkbox>
-						</td>
-						<td>Oceanbees</td>
-						<td>Web designing com</td>
-						<td>
-							<md-icon>mode_edit</md-icon>
-						</td>
-					</tr>
-					<tr>
-
-						<td>
-							<md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects"></md-checkbox>
-						</td>
-						<td>Oceanbees</td>
-						<td>Web designing com</td>
-						<td>
-							<md-icon>mode_edit</md-icon>
+							<md-icon>delete</md-icon>
 						</td>
 					</tr>
 				</tbody>

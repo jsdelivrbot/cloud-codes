@@ -10,3 +10,7 @@ table th md-checkbox,
 table tr md-checkbox{
 	margin-bottom:0px;
 }
+
+table tr td .md-button{
+	margin: 0px;
+}
