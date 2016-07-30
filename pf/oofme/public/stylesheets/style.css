@@ -14,3 +14,9 @@ table tr md-checkbox{
 table tr td .md-button{
 	margin: 0px;
 }
+
+md-toolbar.md-tall-113 {
+	height: 113px;
+	min-height: 113px;
+	max-height: 128px;
+}

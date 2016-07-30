@@ -28,11 +28,15 @@ angular.module('oofme', ['ngMaterial', 'ui.router'])
 		})
 		.state('initializeProject', {
 			url: "/initialize",
-			template:"<h1>Initialize Project</h1>"
-			// templateUrl: "/templated/initialize-project.html",
-			// controller: 'balloonCtrl',
+			templateUrl: "/templated/initialize-project.html",
+			controller: 'initializeCtrl'
 		});
 })
+
+.controller('initializeCtrl', ['$scope', '$state', '$mdDialog', '$mdMedia', 'Store', function($scope, $state, $mdDialog, $mdMedia, Store) {
+	$scope.projectName = "hello";
+	$scope.tagline = "tag";
+}])
 
 .controller('allProjectsCtrl', ['$scope', '$state', 'initialData', '$mdDialog', '$mdMedia', 'Store', function($scope, $state, initialData, $mdDialog, $mdMedia, Store) {
 	Store.allProjects = initialData.projects;
