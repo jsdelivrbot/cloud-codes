@@ -28,7 +28,7 @@ angular.module('oofme', ['ngMaterial', 'ui.router'])
 		});
 })
 
-.controller('allProjectsCtrl', ['$scope', 'initialData', 'Store', function($scope, initialData, Store) {
+.controller('allProjectsCtrl', ['$scope', 'initialData','$mdDialog', '$mdMedia', 'Store', function($scope, initialData,$mdDialog, $mdMedia, Store) {
 	Store.allProjects = initialData.projects;
 	$scope.projects = Store.allProjects;
 	// console.log(Store);
@@ -64,7 +64,35 @@ angular.module('oofme', ['ngMaterial', 'ui.router'])
 				}
 			}
 		}
-	}
+	};
+
+	$scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
+	$scope.deleteProj = function(ev, project) {
+		var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
+		$mdDialog.show({
+				controller: DialogController,
+				templateUrl: '/templated/confirm-delete.html',
+				parent: angular.element(document.body),
+				targetEvent: ev,
+				clickOutsideToClose: true,
+				fullscreen: useFullScreen
+			})
+			.then(function(answer) {
+				// $scope.status = 'You said the information was "' + answer + '".';
+				// $scope.toastMessage = answer;
+				Store.showSimpleToast(answer);
+			}, function() {
+				// $scope.status = 'You cancelled the dialog.';
+				// $scope.toastMessage = 'Cancelled';
+				Store.showSimpleToast('Cancelled');
+			});
+		$scope.$watch(function() {
+			return $mdMedia('xs') || $mdMedia('sm');
+		}, function(wantsFullScreen) {
+			$scope.customFullscreen = (wantsFullScreen === true);
+		});
+
+	};
 }])
 
 // controller

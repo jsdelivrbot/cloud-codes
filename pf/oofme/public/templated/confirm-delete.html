@@ -1,0 +1,30 @@
+<!-- template for confirming deletion -->
+
+<md-dialog aria-label="Delete Project">
+	<md-toolbar class="md-warn">
+		<div class="md-toolbar-tools">
+			<h2>Confirm Delete</h2>
+			<span flex></span>
+			<md-button class="md-icon-button" ng-click="cancel()">
+				<md-icon>close</md-icon>
+			</md-button>
+		</div>
+	</md-toolbar>
+
+	<md-dialog-content>
+		<h3 style="margin:25px 20px 15px 20px;">Do you really need to delete this Project ?</h3>
+		<p style="margin:auto 20px 15px 20px;">The project <strong>Facebook</strong> will be scheduled for deletion.</p>
+		<md-input-container md-no-float style="margin:auto 20px 0px 20px;" class="md-warn">
+			<input type="text" placeholder="Re-type project name" md-autofocus ng-model="projectName">
+		</md-input-container>
+		<br>
+		<md-checkbox style="margin:auto 20px 10px 20px; font-size: 12px;" md-no-ink aria-label="confirm deletion" class="md-warn">
+			I understand the consequences of deleting the project.
+		</md-checkbox>
+
+	</md-dialog-content>
+	<md-dialog-actions layout="row">
+		<md-button ng-click="cancel()">Cancel</md-button>
+		<md-button ng-click="answer(projectName)" class="md-raised md-warn">Delete</md-button>
+	</md-dialog-actions>
+</md-dialog>
