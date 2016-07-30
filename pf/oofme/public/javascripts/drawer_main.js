@@ -25,10 +25,16 @@ angular.module('oofme', ['ngMaterial', 'ui.router'])
 						});
 				}
 			}
+		})
+		.state('initializeProject', {
+			url: "/initialize",
+			template:"<h1>Initialize Project</h1>"
+			// templateUrl: "/templated/initialize-project.html",
+			// controller: 'balloonCtrl',
 		});
 })
 
-.controller('allProjectsCtrl', ['$scope', 'initialData', '$mdDialog', '$mdMedia', 'Store', function($scope, initialData, $mdDialog, $mdMedia, Store) {
+.controller('allProjectsCtrl', ['$scope', '$state', 'initialData', '$mdDialog', '$mdMedia', 'Store', function($scope, $state, initialData, $mdDialog, $mdMedia, Store) {
 	Store.allProjects = initialData.projects;
 	$scope.projects = Store.allProjects;
 	// console.log(Store);
@@ -66,7 +72,7 @@ angular.module('oofme', ['ngMaterial', 'ui.router'])
 		}
 	};
 
-	// handle dialog
+	// handle delete dialog
 	$scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
 	$scope.deleteProj = function(ev, project) {
 		Store.deletingProject = project;
@@ -81,16 +87,53 @@ angular.module('oofme', ['ngMaterial', 'ui.router'])
 			})
 			.then(function(answer) {
 				// $scope.status = 'You said the information was "' + answer + '".';
-				console.log(answer);
-				Store.allProjects.splice(Store.allProjects.indexOf(answer),1);
-				Store.checkedList.splice(Store.checkedList.indexOf(answer.id),1);
-				console.log(Store);
-				
-				Store.showSimpleToast("Deleted");
+				// console.log(answer);
+				Store.allProjects.splice(Store.allProjects.indexOf(answer), 1);
+				Store.checkedList.splice(Store.checkedList.indexOf(answer.id), 1);
+				// console.log(Store);
+
+				Store.showSimpleToast(answer.name + " deleted.");
 			}, function() {
 				// $scope.status = 'You cancelled the dialog.';
 				// $scope.toastMessage = 'Cancelled';
-				Store.showSimpleToast('Cancelled');
+				// Store.showSimpleToast('Cancelled');
+			});
+		$scope.$watch(function() {
+			return $mdMedia('xs') || $mdMedia('sm');
+		}, function(wantsFullScreen) {
+			$scope.customFullscreen = (wantsFullScreen === true);
+		});
+	};
+
+	// handle new project dialog
+	$scope.projectNamePrompt = function(ev) {
+		var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
+		$mdDialog.show({
+				controller: startProjCtrl,
+				templateUrl: '/templated/create-new-project.html',
+				parent: angular.element(document.body),
+				targetEvent: ev,
+				clickOutsideToClose: true,
+				fullscreen: useFullScreen
+			})
+			.then(function(answer) {
+				// $scope.status = 'You said the information was "' + answer + '".';
+				// $scope.toastMessage = answer;
+				Store.initializeProject = null;
+				if (answer) {
+					Store.showSimpleToast("Initializing " + answer);
+					Store.initializeProject = {
+						name: answer
+					};
+					$state.go('initializeProject');
+				}
+				// console.log(Store);
+
+			}, function() {
+				// cancelled;
+				// $scope.status = 'You cancelled the dialog.';
+				// $scope.toastMessage = 'Cancelled';
+				// Store.showSimpleToast('Cancelled');
 			});
 		$scope.$watch(function() {
 			return $mdMedia('xs') || $mdMedia('sm');
@@ -99,9 +142,10 @@ angular.module('oofme', ['ngMaterial', 'ui.router'])
 		});
 
 	};
+
 }])
 
-// controller
+// balloon controller
 .controller('balloonCtrl', ['$scope', '$mdDialog', '$mdMedia', 'Store', function($scope, $mdDialog, $mdMedia, Store) {
 
 	// Start projec - dialog
@@ -144,7 +188,7 @@ angular.module('oofme', ['ngMaterial', 'ui.router'])
 					$mdToast.simple()
 					.textContent(toastMessage)
 					.position('bottom left')
-					.hideDelay(2000)
+					.hideDelay(4000)
 				);
 		},
 		checkedList: [1, 2]
