@@ -28,7 +28,7 @@ angular.module('oofme', ['ngMaterial', 'ui.router'])
 		});
 })
 
-.controller('allProjectsCtrl', ['$scope', 'initialData','$mdDialog', '$mdMedia', 'Store', function($scope, initialData,$mdDialog, $mdMedia, Store) {
+.controller('allProjectsCtrl', ['$scope', 'initialData', '$mdDialog', '$mdMedia', 'Store', function($scope, initialData, $mdDialog, $mdMedia, Store) {
 	Store.allProjects = initialData.projects;
 	$scope.projects = Store.allProjects;
 	// console.log(Store);
@@ -66,11 +66,13 @@ angular.module('oofme', ['ngMaterial', 'ui.router'])
 		}
 	};
 
+	// handle dialog
 	$scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
 	$scope.deleteProj = function(ev, project) {
+		Store.deletingProject = project;
 		var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
 		$mdDialog.show({
-				controller: DialogController,
+				controller: delProjCtrl,
 				templateUrl: '/templated/confirm-delete.html',
 				parent: angular.element(document.body),
 				targetEvent: ev,
@@ -79,8 +81,12 @@ angular.module('oofme', ['ngMaterial', 'ui.router'])
 			})
 			.then(function(answer) {
 				// $scope.status = 'You said the information was "' + answer + '".';
-				// $scope.toastMessage = answer;
-				Store.showSimpleToast(answer);
+				console.log(answer);
+				Store.allProjects.splice(Store.allProjects.indexOf(answer),1);
+				Store.checkedList.splice(Store.checkedList.indexOf(answer.id),1);
+				console.log(Store);
+				
+				Store.showSimpleToast("Deleted");
 			}, function() {
 				// $scope.status = 'You cancelled the dialog.';
 				// $scope.toastMessage = 'Cancelled';
@@ -103,7 +109,7 @@ angular.module('oofme', ['ngMaterial', 'ui.router'])
 	$scope.projectNamePrompt = function(ev) {
 		var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
 		$mdDialog.show({
-				controller: DialogController,
+				controller: startProjCtrl,
 				templateUrl: '/templated/create-new-project.html',
 				parent: angular.element(document.body),
 				targetEvent: ev,
@@ -145,7 +151,26 @@ angular.module('oofme', ['ngMaterial', 'ui.router'])
 	}
 }]);
 
-function DialogController($scope, $mdDialog) {
+function delProjCtrl($scope, $mdDialog, Store) {
+	$scope.delProject = Store.deletingProject;
+	$scope.isDisabled = function() {
+		if (($scope.projectName === Store.deletingProject.name) && $scope.agreeDel) {
+			return false;
+		} else return true;
+	}
+
+	$scope.hide = function() {
+		$mdDialog.hide();
+	};
+	$scope.cancel = function() {
+		$mdDialog.cancel();
+	};
+	$scope.answer = function(answer) {
+		$mdDialog.hide(answer);
+	};
+}
+
+function startProjCtrl($scope, $mdDialog, Store) {
 	$scope.hide = function() {
 		$mdDialog.hide();
 	};
