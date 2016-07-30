@@ -32,18 +32,39 @@ angular.module('oofme', ['ngMaterial', 'ui.router'])
 	Store.allProjects = initialData.projects;
 	$scope.projects = Store.allProjects;
 	// console.log(Store);
-	$scope.isChecked = function(projectID){
-		return Store.checkedList.indexOf(projectID)>-1;
+	$scope.isChecked = function(projectID) {
+		return Store.checkedList.indexOf(projectID) > -1;
 	};
-	$scope.toggleCheck = function(projectID){
+	$scope.toggleCheck = function(projectID) {
 		var idx = Store.checkedList.indexOf(projectID);
-		if(idx > -1){
+		if (idx > -1) {
 			Store.checkedList.splice(idx, 1);
-		}else{
+		} else {
 			Store.checkedList.push(projectID);
 		}
-	}
+	};
 
+	$scope.isAllChecked = function() {
+		return Store.checkedList.length === Store.allProjects.length;
+	};
+
+	$scope.isIndeterminate = function() {
+		// console.log(Store.checkedList.length !== 0 && Store.checkedList.length !== Store.allProjects.length);
+		return Store.checkedList.length !== 0 && Store.checkedList.length !== Store.allProjects.length;
+	};
+	$scope.toggleAllCheck = function() {
+		// if all checked > unchek them all.
+		if (Store.checkedList.length === Store.allProjects.length) {
+			Store.checkedList = [];
+		} else if (Store.checkedList.length === 0 || Store.checkedList.length > 0) {
+			for (var i in Store.allProjects) {
+				var idx = Store.checkedList.indexOf(Store.allProjects[i].id);
+				if (idx < 0) {
+					Store.checkedList.push(Store.allProjects[i].id);
+				}
+			}
+		}
+	}
 }])
 
 // controller
@@ -92,7 +113,7 @@ angular.module('oofme', ['ngMaterial', 'ui.router'])
 					.hideDelay(2000)
 				);
 		},
-		checkedList:[1,2]
+		checkedList: [1, 2]
 	}
 }]);
 
