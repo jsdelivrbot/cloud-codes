@@ -1,5 +1,6 @@
 var express = require('express');
 var path = require('path');
+var shortid = require('shortid');
 var libV = require('../custom_modules/config/lib_versions.js');
 
 var router = express.Router();
@@ -31,6 +32,10 @@ router.get('/projects', function(req, res){
 
 router.get('/apis/initializeMe', function(req, res){
 	res.send(initialData);
+});
+
+router.get('/apis/getShortID', function(req, res){
+	res.send(shortid.generate());
 });
 
 var initialData = {

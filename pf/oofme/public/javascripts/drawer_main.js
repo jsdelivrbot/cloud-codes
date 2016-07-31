@@ -11,7 +11,7 @@ angular.module('oofme', ['ngMaterial', 'ui.router'])
 			templateUrl: "/templated/balloon-card.html",
 			controller: 'balloonCtrl',
 		})
-		.state('dash', {
+		.state('allProjects', {
 			url: "/",
 			templateUrl: "/templated/all-projects.html",
 			controller: "allProjectsCtrl",
@@ -26,19 +26,42 @@ angular.module('oofme', ['ngMaterial', 'ui.router'])
 				}
 			}
 		})
-		.state('initializeProject', {
-			url: "/initialize",
+		.state('projectDash', {
+			url: "/dash",
 			templateUrl: "/templated/initialize-project.html",
-			controller: 'initializeCtrl'
+			controller: 'projectDashCtrl'
+		})
+		.state('projectDash_settings', {
+			parent: "projectDash",
+			views: {
+				'menuContents@projectDash': {
+					templateUrl: '/templated/project-settings.html',
+					controller: 'projectDash_settingsCtrl'
+				}
+			}
 		});
 })
 
-.controller('initializeCtrl', ['$scope', '$state', '$mdDialog', '$mdMedia', 'Store', function($scope, $state, $mdDialog, $mdMedia, Store) {
+.controller('projectDash_settingsCtrl', ['$scope', '$rootScope', '$state', '$mdDialog', '$mdMedia', 'Store', function($scope, $rootScope, $state, $mdDialog, $mdMedia, Store) {
 	$scope.projectName = "hello";
 	$scope.tagline = "tag";
 }])
 
-.controller('allProjectsCtrl', ['$scope', '$state', 'initialData', '$mdDialog', '$mdMedia', 'Store', function($scope, $state, initialData, $mdDialog, $mdMedia, Store) {
+.controller('projectDashCtrl', ['$scope', '$rootScope', '$state', '$mdDialog', '$mdMedia', 'Store', function($scope, $rootScope, $state, $mdDialog, $mdMedia, Store) {
+	if (Store.initializingProject) {
+		console.log("success");
+		$scope.currentNavItem = "settings";
+	} else {
+		$scope.currentNavItem = "overview";
+	}
+
+	// for handling nav bar
+	$rootScope.$on('$routeChangeSuccess', function(event, current) {
+		$scope.currentLink = getCurrentLinkFromRoute(current);
+	});
+}])
+
+.controller('allProjectsCtrl', ['$scope', '$http', '$state', 'initialData', '$mdDialog', '$mdMedia', 'Store', function($scope, $http, $state, initialData, $mdDialog, $mdMedia, Store) {
 	Store.allProjects = initialData.projects;
 	$scope.projects = Store.allProjects;
 	// console.log(Store);
@@ -123,13 +146,23 @@ angular.module('oofme', ['ngMaterial', 'ui.router'])
 			.then(function(answer) {
 				// $scope.status = 'You said the information was "' + answer + '".';
 				// $scope.toastMessage = answer;
-				Store.initializeProject = null;
+				Store.initializingProject = false;
 				if (answer) {
 					Store.showSimpleToast("Initializing " + answer);
-					Store.initializeProject = {
-						name: answer
-					};
-					$state.go('initializeProject');
+					Store.initializingProject = true;
+					$http.get('/apis/getShortID')
+						.then(function(response) {
+							// console.log(JSON.stringify(response.data));
+							Store.allProjects.push({
+								name: answer,
+								id: response.data
+							});
+						});
+					$state.go('projectDash');
+					// console.log(JSON.stringify(Store.allProjects));
+					console.log(JSON.stringify(Store));
+					// console.log(JSON.stringify(id));
+
 				}
 				// console.log(Store);
 
