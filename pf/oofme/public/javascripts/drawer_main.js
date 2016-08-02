@@ -28,16 +28,16 @@ angular.module('oofme', ['ngMaterial', 'ui.router'])
 		})
 		.state('projectDash', {
 			url: "/dash",
-			templateUrl: "/templated/initialize-project.html",
+			templateUrl: "/templated/project-dash.html",
 			controller: 'projectDashCtrl'
 		})
 		.state('projectDash_settings', {
 			parent: "projectDash",
 			views: {
 				'menuContents@projectDash': {
-					// templateUrl: '/templated/project-settings.html',
-					template: "<h1>settings</h1>",
-					// controller: 'projectDash_settingsCtrl'
+					templateUrl: '/templated/project-settings.html',
+					// template: "<h1>settings</h1>",
+					controller: 'projectDash_settingsCtrl'
 				}
 			}
 		})
