@@ -72,8 +72,10 @@ angular.module('oofme', ['ngMaterial', 'ui.router'])
 	if (Store.initializingProject) {
 		console.log("success");
 		$scope.currentNavItem = "settings";
+		$state.go('projectDash_settings');
 	} else {
 		$scope.currentNavItem = "overview";
+		$state.go('projectDash_overview');
 	}
 
 	// for handling nav bar
