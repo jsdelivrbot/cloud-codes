@@ -35,8 +35,29 @@ angular.module('oofme', ['ngMaterial', 'ui.router'])
 			parent: "projectDash",
 			views: {
 				'menuContents@projectDash': {
-					templateUrl: '/templated/project-settings.html',
-					controller: 'projectDash_settingsCtrl'
+					// templateUrl: '/templated/project-settings.html',
+					template: "<h1>settings</h1>",
+					// controller: 'projectDash_settingsCtrl'
+				}
+			}
+		})
+		.state('projectDash_browse', {
+			parent: "projectDash",
+			views: {
+				'menuContents@projectDash': {
+					// templateUrl: '/templated/project-settings.html',
+					template: "<h1>Browse</h1>",
+					// controller: 'projectDash_settingsCtrl'
+				}
+			}
+		})
+		.state('projectDash_overview', {
+			parent: "projectDash",
+			views: {
+				'menuContents@projectDash': {
+					// templateUrl: '/templated/project-settings.html',
+					template: "<h1>overview</h1>",
+					// controller: 'projectDash_settingsCtrl'
 				}
 			}
 		});
