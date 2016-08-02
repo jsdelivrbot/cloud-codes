@@ -64,11 +64,24 @@ angular.module('oofme', ['ngMaterial', 'ui.router'])
 })
 
 .controller('projectDash_settingsCtrl', ['$scope', '$rootScope', '$state', '$mdDialog', '$mdMedia', 'Store', function($scope, $rootScope, $state, $mdDialog, $mdMedia, Store) {
-	$scope.projectName = "hello";
-	$scope.tagline = "tag";
+	// $scope.project = Store.currentLoadedProject;
+	$scope.project = {
+		name: "test",
+		id: 45,
+		tagline:''
+	};
+
+	$scope.applyChanges = function(){
+		Store.currentLoadedProject = $scope.project;
+		console.log(Store.currentLoadedProject);
+	}
 }])
 
 .controller('projectDashCtrl', ['$scope', '$rootScope', '$state', '$mdDialog', '$mdMedia', 'Store', function($scope, $rootScope, $state, $mdDialog, $mdMedia, Store) {
+
+	// $scope.project = Store.currentLoadedProject;
+	$scope.project = Store.currentLoadedProject;
+
 	if (Store.initializingProject) {
 		console.log("success");
 		$scope.currentNavItem = "settings";
@@ -180,6 +193,10 @@ angular.module('oofme', ['ngMaterial', 'ui.router'])
 								name: answer,
 								id: response.data
 							});
+							Store.currentLoadedProject = {
+								name: answer,
+								id: response.data
+							};
 						});
 					$state.go('projectDash');
 					// console.log(JSON.stringify(Store.allProjects));
