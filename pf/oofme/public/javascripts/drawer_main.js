@@ -79,8 +79,16 @@ angular.module('oofme', ['ngMaterial', 'ui.router'])
 
 .controller('projectDashCtrl', ['$scope', '$rootScope', '$state', '$mdDialog', '$mdMedia', 'Store', function($scope, $rootScope, $state, $mdDialog, $mdMedia, Store) {
 
-	// $scope.project = Store.currentLoadedProject;
 	$scope.project = Store.currentLoadedProject;
+
+	// change in Store shold reflect here. So $watch-ing.
+	$scope.$watch(function(){
+		return Store.currentLoadedProject;
+	}, function(newVal, oldVal){
+		if(!(newVal===undefined)){
+			$scope.project = Store.currentLoadedProject;
+		}
+	});
 
 	if (Store.initializingProject) {
 		console.log("success");
