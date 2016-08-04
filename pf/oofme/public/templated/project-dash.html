@@ -1,11 +1,11 @@
 <div layout="column" layout-fill>
 	<md-toolbar class="">
 		<div class="md-toolbar-tools">
-			<span style="font-size: 1.75em;">{{projectName}}</span>
+			<span style="font-size: 1.75em;">{{project.name}}</span>
 			<!-- fill up the space between left and right area -->
-			<md-button style="margin-left: 3em;" class="md-accent md-raised">
+			<!-- <md-button style="margin-left: 3em;" class="md-accent md-raised">
 				save all
-			</md-button>
+			</md-button> -->
 			<span flex></span>
 			<md-switch aria-label="Status" ng-model="isPublished">
 				Published
@@ -13,8 +13,8 @@
 		</div>
 	</md-toolbar>
 	<md-nav-bar md-selected-nav-item="currentNavItem">
-		<md-nav-item md-nav-click="goto('page1')" name="overview">Overview</md-nav-item>
-		<md-nav-item md-nav-sref="goto('page2')" name="browse">Browse</md-nav-item>
+		<md-nav-item md-nav-sref="projectDash_overview" name="overview">Overview</md-nav-item>
+		<md-nav-item md-nav-sref="projectDash_browse" name="browse">Browse</md-nav-item>
 		<md-nav-item md-nav-sref="projectDash_settings" name="settings">Settings</md-nav-item>
 	</md-nav-bar>
 

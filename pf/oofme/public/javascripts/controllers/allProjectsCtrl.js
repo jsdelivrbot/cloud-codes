@@ -1,68 +1,9 @@
-angular.module('oofme', ['ngMaterial', 'ui.router'])
+////////////////////////////
+// allProjects controller //
+////////////////////////////
+// controller to manage the all projects' table.
 
-.config(function($stateProvider, $urlRouterProvider) {
-	// for any unmatched url, redirect to the default.
-	$urlRouterProvider.otherwise("/");
-
-	// srtup states
-	$stateProvider
-		.state('balloon', {
-			url: "/balloon",
-			templateUrl: "/templated/balloon-card.html",
-			controller: 'balloonCtrl',
-		})
-		.state('allProjects', {
-			url: "/",
-			templateUrl: "/templated/all-projects.html",
-			controller: "allProjectsCtrl",
-			resolve: {
-				// get project list
-				initialData: function($http) {
-					return $http.get('/apis/initializeMe')
-						.then(function(response) {
-							// console.log(JSON.stringify(response.data));
-							return response.data;
-						});
-				}
-			}
-		})
-		.state('projectDash', {
-			url: "/dash",
-			templateUrl: "/templated/project-dash.html",
-			controller: 'projectDashCtrl'
-		})
-		.state('projectDash_settings', {
-			parent: "projectDash",
-			views: {
-				'menuContents@projectDash': {
-					templateUrl: '/templated/project-settings.html',
-					controller: 'projectDash_settingsCtrl'
-				}
-			}
-		});
-})
-
-.controller('projectDash_settingsCtrl', ['$scope', '$rootScope', '$state', '$mdDialog', '$mdMedia', 'Store', function($scope, $rootScope, $state, $mdDialog, $mdMedia, Store) {
-	$scope.projectName = "hello";
-	$scope.tagline = "tag";
-}])
-
-.controller('projectDashCtrl', ['$scope', '$rootScope', '$state', '$mdDialog', '$mdMedia', 'Store', function($scope, $rootScope, $state, $mdDialog, $mdMedia, Store) {
-	$scope.projectName = "hello";
-	$scope.tagline = "tag";
-
-	if (Store.initializingProject) {
-		console.log("success");
-		$scope.currentNavItem = "settings";
-	} else {
-		$scope.currentNavItem = "overview";
-	}
-
-	// for handling nav bar
-	$rootScope.$on('$routeChangeSuccess', function(event, current) {
-		$scope.currentLink = getCurrentLinkFromRoute(current);
-	});
-}])
+angular.module('oofme')
 
 .controller('allProjectsCtrl', ['$scope', '$http', '$state', 'initialData', '$mdDialog', '$mdMedia', 'Store', function($scope, $http, $state, initialData, $mdDialog, $mdMedia, Store) {
 	Store.allProjects = initialData.projects;
@@ -161,6 +102,10 @@ angular.module('oofme', ['ngMaterial', 'ui.router'])
 								id: response.data,
 								published: false
 							});
+							Store.currentLoadedProject = {
+								name: answer,
+								id: response.data
+							};
 						});
 					$state.go('projectDash');
 					// console.log(JSON.stringify(Store.allProjects));
@@ -184,56 +129,6 @@ angular.module('oofme', ['ngMaterial', 'ui.router'])
 
 	};
 
-}])
-
-// balloon controller
-.controller('balloonCtrl', ['$scope', '$mdDialog', '$mdMedia', 'Store', function($scope, $mdDialog, $mdMedia, Store) {
-
-	// Start projec - dialog
-	$scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
-	$scope.projectNamePrompt = function(ev) {
-		var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
-		$mdDialog.show({
-				controller: startProjCtrl,
-				templateUrl: '/templated/create-new-project.html',
-				parent: angular.element(document.body),
-				targetEvent: ev,
-				clickOutsideToClose: true,
-				fullscreen: useFullScreen
-			})
-			.then(function(answer) {
-				// $scope.status = 'You said the information was "' + answer + '".';
-				// $scope.toastMessage = answer;
-				Store.showSimpleToast(answer);
-			}, function() {
-				// $scope.status = 'You cancelled the dialog.';
-				// $scope.toastMessage = 'Cancelled';
-				Store.showSimpleToast('Cancelled');
-			});
-		$scope.$watch(function() {
-			return $mdMedia('xs') || $mdMedia('sm');
-		}, function(wantsFullScreen) {
-			$scope.customFullscreen = (wantsFullScreen === true);
-		});
-
-	};
-}])
-
-// // Store factory
-.factory('Store', ['$mdToast', '$http', function($mdToast, $http) {
-	return {
-		// For Toasting a message
-		showSimpleToast: function(toastMessage) {
-			if (toastMessage)
-				$mdToast.show(
-					$mdToast.simple()
-					.textContent(toastMessage)
-					.position('bottom left')
-					.hideDelay(4000)
-				);
-		},
-		checkedList: [1, 2]
-	}
 }]);
 
 function delProjCtrl($scope, $mdDialog, Store) {
@@ -265,4 +160,4 @@ function startProjCtrl($scope, $mdDialog, Store) {
 	$scope.answer = function(answer) {
 		$mdDialog.hide(answer);
 	};
-}
+};
