@@ -67,11 +67,10 @@ angular.module('oofme')
 				}
 			}
 		})
-		
-		// error page
-		.state('error', {
-			url: "/err",
-			template: "<h1>Something went wrong!</h1><h2>Sending an engineer to fix this!</h2>",
-		})
-		;
+
+	// error page
+	.state('error', {
+		url: "/err",
+		template: "<h1>Something went wrong!</h1><h2>Sending an engineer to fix this!</h2>",
+	});
 });
