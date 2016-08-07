@@ -6,7 +6,7 @@
 angular.module('oofme')
 
 .controller('allProjectsCtrl', ['$scope', '$http', '$state', 'initialData', '$mdDialog', '$mdMedia', 'Store', function($scope, $http, $state, initialData, $mdDialog, $mdMedia, Store) {
-	Store.allProjects = initialData.projects;
+	Store.allProjects = initialData;
 	$scope.projects = Store.allProjects;
 	// console.log(Store);
 	$scope.isChecked = function(projectID) {
@@ -61,9 +61,28 @@ angular.module('oofme')
 				// console.log(answer);
 				Store.allProjects.splice(Store.allProjects.indexOf(answer), 1);
 				Store.checkedList.splice(Store.checkedList.indexOf(answer.id), 1);
-				// console.log(Store);
 
-				Store.showSimpleToast(answer.name + " deleted.");
+				// make it so on server > mongo
+				$http.get('/apis/deleteProject/' + answer.id)
+					.then(
+						// success
+						function(response) {
+							console.log('in success :response ', response);
+
+							if (response.data == false) {
+								$state.go("error");
+							} else {
+								Store.showSimpleToast(answer.name + " deleted.");
+							}
+						},
+						// failure
+						function(response) {
+							console.log('response ', response);
+							console.log("error in deleting post");
+							$state.go('error');
+						}
+					);
+				// Store.showSimpleToast(answer.name + " deleted.");
 			}, function() {
 				// $scope.status = 'You cancelled the dialog.';
 				// $scope.toastMessage = 'Cancelled';
@@ -105,7 +124,7 @@ angular.module('oofme')
 								id: response.data
 							};
 							// post the data to server to save it remotely
-							var tem = $http.post('apis/addNewProject', {
+							$http.post('apis/addNewProject', {
 								name: answer,
 								id: response.data,
 								published: false

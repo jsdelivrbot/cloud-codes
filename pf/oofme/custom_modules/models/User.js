@@ -32,7 +32,7 @@ var userSchema = mongoose.Schema({
 	},
 
 	// list of all projects the user have.
-	allProjects: Object
+	allProjects: Array
 
 });
 

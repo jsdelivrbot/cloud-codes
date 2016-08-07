@@ -41,7 +41,26 @@ router.post('/addNewProject', function(req, res) {
 		console.log("req.body: ", JSON.stringify(req.body));
 		// user logged in
 		User.update({ _id: req.user._id }, {
-			$push: { "allProjects.projects": req.body }
+			$push: { "allProjects": req.body }
+		}, function(err, raw) {
+			// console.log('err', err);
+			// console.log('raw', raw);
+			if (err) {
+				res.send(false);
+			}
+		});
+	} else {
+		// not logged in
+		res.send("invalid request");
+	}
+});
+
+// delete Project
+router.get('/deleteProject/:id', function(req, res) {
+	if (req.user) {
+		// user logged in
+		User.update({ _id: req.user._id }, {
+			$pull: { "allProjects": { id: req.params.id } }
 		}, function(err, raw) {
 			// console.log('err', err);
 			// console.log('raw', raw);
