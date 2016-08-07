@@ -30,14 +30,6 @@ router.get('/projects', function(req, res){
 	res.send("hi");
 });
 
-router.get('/apis/initializeMe', function(req, res){
-	res.send(initialData);
-});
-
-router.get('/apis/getShortID', function(req, res){
-	res.send(shortid.generate());
-});
-
 var initialData = {
 	projects:[
 		{

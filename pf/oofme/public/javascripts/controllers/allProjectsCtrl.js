@@ -90,10 +90,8 @@ angular.module('oofme')
 			.then(function(answer) {
 				// $scope.status = 'You said the information was "' + answer + '".';
 				// $scope.toastMessage = answer;
-				Store.initializingProject = false;
 				if (answer) {
 					Store.showSimpleToast("Initializing " + answer);
-					Store.initializingProject = true;
 					$http.get('/apis/getShortID')
 						.then(function(response) {
 							// console.log(JSON.stringify(response.data));

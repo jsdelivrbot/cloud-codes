@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 // define the schema for our user model
 var userSchema = mongoose.Schema({
 
+	// auth accounts data.
 	google: {
 		id: String,
 		token: String,
@@ -28,7 +29,10 @@ var userSchema = mongoose.Schema({
 		username: String,
 		photo: String,
 		lastUpdatedOn: Date
-	}
+	},
+
+	// list of all projects the user have.
+	allProjects: Array
 
 });
 
