@@ -1,13 +1,14 @@
 var express = require('express');
 var path = require('path');
 var shortid = require('shortid');
+var util = require('../custom_modules/utilities.js');
 var libV = require('../custom_modules/config/lib_versions.js');
 
 var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	if (req.user) {
+	if (util.reqAuthenticated(req)) {
 		res.render('index', {
 			title: "oofme",
 			v_angularjs: libV.angularJS,

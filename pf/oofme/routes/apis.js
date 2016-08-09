@@ -2,17 +2,19 @@ var express = require('express');
 var shortid = require('shortid');
 var router = express.Router();
 
+// load utilities
+var util = require('../custom_modules/utilities.js');
 // load up the User model
 var User = require('../custom_modules/models/User.js');
 
 // test request
 router.get('/', function(req, res) {
-	res.send("Invalid- request: reporting from apis.j");
+	res.send("Invalid- request: reporting from apis.js");
 });
 
 // api to generate short id with 'shortid' lib.
 router.get('/getShortID', function(req, res) {
-	if (req.user) {
+	if (util.reqAuthenticated(req)) {
 		// user logged in
 		res.send(shortid.generate());
 	} else {
@@ -23,7 +25,7 @@ router.get('/getShortID', function(req, res) {
 
 // sending initial data.
 router.get('/initializeMe', function(req, res) {
-	if (req.user) {
+	if (util.reqAuthenticated(req)) {
 		// user logged in
 		User.findOne({ _id: req.user._id }, 'allProjects', function(err, response) {
 			console.log('allProjects ', response.allProjects);
@@ -37,7 +39,7 @@ router.get('/initializeMe', function(req, res) {
 
 // addNewProject
 router.post('/addNewProject', function(req, res) {
-	if (req.user) {
+	if (util.reqAuthenticated(req)) {
 		console.log("req.body: ", JSON.stringify(req.body));
 		// user logged in
 		User.update({ _id: req.user._id }, {
@@ -57,7 +59,7 @@ router.post('/addNewProject', function(req, res) {
 
 // delete Project
 router.get('/deleteProject/:id', function(req, res) {
-	if (req.user) {
+	if (util.reqAuthenticated(req)) {
 		// user logged in
 		User.update({ _id: req.user._id }, {
 			$pull: { "allProjects": { id: req.params.id } }
