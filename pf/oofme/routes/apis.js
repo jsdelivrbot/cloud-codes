@@ -27,7 +27,9 @@ router.get('/getShortID', function(req, res) {
 router.get('/initializeMe', function(req, res) {
 	if (util.reqAuthenticated(req)) {
 		// user logged in
-		User.findOne({ _id: req.user._id }, 'allProjects', function(err, response) {
+		// 57a71fe67491b1926b129bbf
+		// { _id: req.user._id }
+		User.findOne({ _id: "57a71fe67491b1926b129bbf" }, 'allProjects', function(err, response) {
 			console.log('allProjects ', response.allProjects);
 			res.send(response.allProjects);
 		});
@@ -42,13 +44,16 @@ router.post('/addNewProject', function(req, res) {
 	if (util.reqAuthenticated(req)) {
 		console.log("req.body: ", JSON.stringify(req.body));
 		// user logged in
-		User.update({ _id: req.user._id }, {
+		User.update({ _id: "57a71fe67491b1926b129bbf" }, {
 			$push: { "allProjects": req.body }
 		}, function(err, raw) {
 			// console.log('err', err);
 			// console.log('raw', raw);
 			if (err) {
+				console.log('err ', err);
 				res.send(false);
+			} else {
+				res.send(true);
 			}
 		});
 	} else {
@@ -61,7 +66,7 @@ router.post('/addNewProject', function(req, res) {
 router.get('/deleteProject/:id', function(req, res) {
 	if (util.reqAuthenticated(req)) {
 		// user logged in
-		User.update({ _id: req.user._id }, {
+		User.update({ _id: "57a71fe67491b1926b129bbf" }, {
 			$pull: { "allProjects": { id: req.params.id } }
 		}, function(err, raw) {
 			// console.log('err', err);
@@ -76,29 +81,49 @@ router.get('/deleteProject/:id', function(req, res) {
 	}
 });
 
+// update project
+router.post('/updateProject', function(req, res) {
+	if (util.reqAuthenticated(req)) {
+		// User.update({ _id: "57a71fe67491b1926b129bbf" }, {
+		// 	$set: { "allProjects": req.body }
+		// }, function(err, raw) {
+		// 	// console.log('err', err);
+		// 	// console.log('raw', raw);
+		// 	if (err) {
+		// 		console.log('err ', err);
+		// 		res.send(false);
+		// 	} else {
+		// 		res.send(true);
+		// 	}
+		// });
+		res.send(false);
+	} else {
+		res.send("invalid request!")
+	}
+})
 module.exports = router;
 
 // for test purpose.
-var initialData = {
-	projects: [{
-		id: 1,
-		name: "Oceanbees",
-		des: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas natus id velit, esse sequi ",
-		isPublished: true,
-	}, {
-		id: 2,
-		name: "Facebook",
-		des: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas natus id velit, esse sequi ",
-		isPublished: true,
-	}, {
-		id: 3,
-		name: "Good Methods",
-		des: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas natus id velit, esse sequi ",
-		isPublished: true,
-	}, {
-		id: 4,
-		name: "Accenture",
-		des: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas natus id velit, esse sequi ",
-		isPublished: true,
-	}]
-}
+// var initialData = {
+// 	projects: [{
+// 		id: 1,
+// 		name: "Oceanbees",
+// 		des: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas natus id velit, esse sequi ",
+// 		isPublished: true,
+// 	}, {
+// 		id: 2,
+// 		name: "Facebook",
+// 		des: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas natus id velit, esse sequi ",
+// 		isPublished: true,
+// 	}, {
+// 		id: 3,
+// 		name: "Good Methods",
+// 		des: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas natus id velit, esse sequi ",
+// 		isPublished: true,
+// 	}, {
+// 		id: 4,
+// 		name: "Accenture",
+// 		des: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas natus id velit, esse sequi ",
+// 		isPublished: true,
+// 	}]
+// }

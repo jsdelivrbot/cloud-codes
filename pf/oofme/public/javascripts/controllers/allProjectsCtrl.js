@@ -138,7 +138,9 @@ angular.module('oofme')
 								},
 								// failure callback
 								function(response) {
+									console.log('response ', response);
 									$state.go('error');
+
 								}
 							);
 						});
