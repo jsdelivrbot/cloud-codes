@@ -43,6 +43,13 @@ angular.module('oofme')
 		}
 	};
 
+	// go to a specific project
+	$scope.goToProject = function(project) {
+		console.log('project ', project);
+		Store.currentLoadedProject = project;
+		$state.go('projectDash');
+	}
+
 	// handle delete dialog
 	$scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
 	$scope.deleteProj = function(ev, project) {
