@@ -84,19 +84,25 @@ router.get('/deleteProject/:id', function(req, res) {
 // update project
 router.post('/updateProject', function(req, res) {
 	if (util.reqAuthenticated(req)) {
-		// User.update({ _id: "57a71fe67491b1926b129bbf" }, {
-		// 	$set: { "allProjects": req.body }
-		// }, function(err, raw) {
-		// 	// console.log('err', err);
-		// 	// console.log('raw', raw);
-		// 	if (err) {
-		// 		console.log('err ', err);
-		// 		res.send(false);
-		// 	} else {
-		// 		res.send(true);
-		// 	}
-		// });
-		res.send(false);
+		User.update({ 
+			_id: "57a71fe67491b1926b129bbf",
+			"allProjects.id": req.body.id
+		}, {
+			$set: { 
+				"allProjects.$.name": req.body.name,
+				"allProjects.$.tag": req.body.tagline
+			}
+		}, function(err, raw) {
+			// console.log('err', err);
+			// console.log('raw', raw);
+			if (err) {
+				console.log('err ', err);
+				res.send(false);
+			} else {
+				res.send(true);
+			}
+		});
+		// res.send(false);
 	} else {
 		res.send("invalid request!")
 	}
