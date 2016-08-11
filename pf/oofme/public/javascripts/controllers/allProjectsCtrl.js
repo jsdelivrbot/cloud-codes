@@ -64,11 +64,6 @@ angular.module('oofme')
 				fullscreen: useFullScreen
 			})
 			.then(function(answer) {
-				// $scope.status = 'You said the information was "' + answer + '".';
-				// console.log(answer);
-				Store.allProjects.splice(Store.allProjects.indexOf(answer), 1);
-				Store.checkedList.splice(Store.checkedList.indexOf(answer.id), 1);
-
 				// make it so on server > mongo
 				$http.get('/apis/deleteProject/' + answer.id)
 					.then(
@@ -77,8 +72,11 @@ angular.module('oofme')
 							console.log('in success :response ', response);
 
 							if (response.data == false) {
-								$state.go("error");
+								// $state.go("error");
+								alert("something went wrong");
 							} else {
+								Store.allProjects.splice(Store.allProjects.indexOf(answer), 1);
+								Store.checkedList.splice(Store.checkedList.indexOf(answer.id), 1);
 								Store.showSimpleToast(answer.name + " deleted.");
 							}
 						},
@@ -119,38 +117,46 @@ angular.module('oofme')
 				if (answer) {
 					Store.showSimpleToast("Initializing " + answer);
 					$http.get('/apis/getShortID')
-						.then(function(response) {
-							// console.log(JSON.stringify(response.data));
-							Store.allProjects.push({
-								name: answer,
-								id: response.data,
-								published: false
-							});
-							Store.currentLoadedProject = {
-								name: answer,
-								id: response.data
-							};
-							// post the data to server to save it remotely
-							$http.post('apis/addNewProject', {
-								name: answer,
-								id: response.data,
-								published: false
-							}).then(
-								// success callback
-								function(response) {
-									if (response.data == false) {
-										$state.go('error');
-										console.log('post response.data ', response.data);
-									}
-								},
-								// failure callback
-								function(response) {
-									console.log('response ', response);
-									$state.go('error');
+						.then(
+							// success
+							function(response) {
+								if (response.data) {
+									$http.post('apis/addNewProject', {
+										name: answer,
+										id: response.data,
+										published: false
+									}).then(
+										// success callback
+										function(resp) {
+											if (resp.data == true) {
+												Store.allProjects.push({
+													name: answer,
+													id: response.data,
+													published: false
+												});
+												Store.currentLoadedProject = {
+													name: answer,
+													id: response.data
+												};
+											} else {
+												// $state.go('error');
+												alert("the opetation wasn't success");
+												console.log('post response.data ', response.data);
+											}
+										},
+										// failure callback
+										function(response) {
+											console.log('response ', response);
+											$state.go('error');
+
+										}
+									);
 
 								}
-							);
-						});
+
+								// post the data to server to save it remotely
+
+							});
 					$state.go('projectDash');
 					// console.log(JSON.stringify(Store.allProjects));
 					// console.log(JSON.stringify(Store));

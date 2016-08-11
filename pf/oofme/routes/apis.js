@@ -73,6 +73,8 @@ router.get('/deleteProject/:id', function(req, res) {
 			// console.log('raw', raw);
 			if (err) {
 				res.send(false);
+			} else{
+				res.send(true);
 			}
 		});
 	} else {
