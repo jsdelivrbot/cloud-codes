@@ -12,17 +12,18 @@ angular.module('oofme')
 
 		// apply changes to system wide
 		$scope.applyChanges = function() {
-			Store.currentLoadedProject = angular.copy($scope.project);
-			console.log(Store.currentLoadedProject);
 			// post data to server
-			$http.post('apis/updateProject', Store.currentLoadedProject)
+			$http.post('apis/updateProject', $scope.project)
 				.then(
 					// success callback
 					function(response) {
 						if (response.data == true) {
+							Store.currentLoadedProject = angular.copy($scope.project);
+							console.log(Store.currentLoadedProject);
 							Store.showSimpleToast("Changes saved.");
 						} else {
-							$state.go('error');
+							// $state.go('error');
+							alert("Something went wrong!");
 							console.log('post response.data ', response.data);
 						}
 					},
