@@ -92,7 +92,7 @@ router.post('/updateProject', function(req, res) {
 		}, {
 			$set: { 
 				"allProjects.$.name": req.body.name,
-				"allProjects.$.tag": req.body.tagline
+				"allProjects.$.tagline": req.body.tagline
 			}
 		}, function(err, raw) {
 			// console.log('err', err);

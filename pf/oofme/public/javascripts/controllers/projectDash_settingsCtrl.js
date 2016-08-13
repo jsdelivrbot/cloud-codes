@@ -7,6 +7,7 @@ angular.module('oofme')
 
 .controller('projectDash_settingsCtrl', ['$scope', '$http', '$rootScope', '$state', '$mdDialog', '$mdMedia', 'Store', function($scope, $http, $rootScope, $state, $mdDialog, $mdMedia, Store) {
 	if (Store.currentLoadedProject) {
+		console.log('Store.currentLoadedProject', Store.currentLoadedProject);
 		// initialize $scope.project var.
 		$scope.project = angular.copy(Store.currentLoadedProject);
 
