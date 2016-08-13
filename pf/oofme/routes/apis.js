@@ -6,6 +6,8 @@ var router = express.Router();
 var util = require('../custom_modules/utilities.js');
 // load up the User model
 var User = require('../custom_modules/models/User.js');
+// load the Project model
+var Project = require('../custom_modules/models/Project.js');
 
 // test request
 router.get('/', function(req, res) {
@@ -27,9 +29,9 @@ router.get('/getShortID', function(req, res) {
 router.get('/initializeMe', function(req, res) {
 	if (util.reqAuthenticated(req)) {
 		// user logged in
-		// 57a71fe67491b1926b129bbf
+		// 57aecf658807c42710307d58
 		// { _id: req.user._id }
-		User.findOne({ _id: "57a71fe67491b1926b129bbf" }, 'allProjects', function(err, response) {
+		User.findOne({ _id: "57aecf658807c42710307d58" }, 'allProjects', function(err, response) {
 			console.log('allProjects ', response.allProjects);
 			res.send(response.allProjects);
 		});
@@ -41,19 +43,39 @@ router.get('/initializeMe', function(req, res) {
 
 // addNewProject
 router.post('/addNewProject', function(req, res) {
+	// check if the user is logged in
+
 	if (util.reqAuthenticated(req)) {
-		console.log("req.body: ", JSON.stringify(req.body));
-		// user logged in
-		User.update({ _id: "57a71fe67491b1926b129bbf" }, {
-			$push: { "allProjects": req.body }
-		}, function(err, raw) {
-			// console.log('err', err);
-			// console.log('raw', raw);
+		var currentUser = util.getCurrentUser(req);
+		var NewProject = new Project({
+			id: req.body.id,
+			name: req.body.name,
+			isPublished: req.body.published,
+			authors: [{
+				id: currentUser.id,
+				name: currentUser.name
+			}]
+		});
+		// create new project
+		NewProject.save(function(err, NewProject) {
 			if (err) {
-				console.log('err ', err);
+				// if err, abort
+				console.log('err in adding new project', err);
 				res.send(false);
 			} else {
-				res.send(true);
+				// if no err, update allProjects
+				User.update({ _id: "57aecf658807c42710307d58" }, {
+					$push: { "allProjects": req.body }
+				}, function(err, raw) {
+					// console.log('err', err);
+					// console.log('raw', raw);
+					if (err) {
+						console.log('err ', err);
+						res.send(false);
+					} else {
+						res.send(true);
+					}
+				});
 			}
 		});
 	} else {
@@ -66,14 +88,14 @@ router.post('/addNewProject', function(req, res) {
 router.get('/deleteProject/:id', function(req, res) {
 	if (util.reqAuthenticated(req)) {
 		// user logged in
-		User.update({ _id: "57a71fe67491b1926b129bbf" }, {
+		User.update({ _id: "57aecf658807c42710307d58" }, {
 			$pull: { "allProjects": { id: req.params.id } }
 		}, function(err, raw) {
 			// console.log('err', err);
 			// console.log('raw', raw);
 			if (err) {
 				res.send(false);
-			} else{
+			} else {
 				res.send(true);
 			}
 		});
@@ -86,11 +108,11 @@ router.get('/deleteProject/:id', function(req, res) {
 // update project
 router.post('/updateProject', function(req, res) {
 	if (util.reqAuthenticated(req)) {
-		User.update({ 
-			_id: "57a71fe67491b1926b129bbf",
+		User.update({
+			_id: "57aecf658807c42710307d58",
 			"allProjects.id": req.body.id
 		}, {
-			$set: { 
+			$set: {
 				"allProjects.$.name": req.body.name,
 				"allProjects.$.tagline": req.body.tagline
 			}
@@ -110,28 +132,3 @@ router.post('/updateProject', function(req, res) {
 	}
 })
 module.exports = router;
-
-// for test purpose.
-// var initialData = {
-// 	projects: [{
-// 		id: 1,
-// 		name: "Oceanbees",
-// 		des: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas natus id velit, esse sequi ",
-// 		isPublished: true,
-// 	}, {
-// 		id: 2,
-// 		name: "Facebook",
-// 		des: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas natus id velit, esse sequi ",
-// 		isPublished: true,
-// 	}, {
-// 		id: 3,
-// 		name: "Good Methods",
-// 		des: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas natus id velit, esse sequi ",
-// 		isPublished: true,
-// 	}, {
-// 		id: 4,
-// 		name: "Accenture",
-// 		des: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas natus id velit, esse sequi ",
-// 		isPublished: true,
-// 	}]
-// }
