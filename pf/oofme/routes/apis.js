@@ -86,8 +86,8 @@ router.post('/addNewProject', function(req, res) {
 
 // delete Project
 router.get('/deleteProject/:id', function(req, res) {
+	// check if the user is logged in
 	if (util.reqAuthenticated(req)) {
-		// user logged in
 		User.update({ _id: "57aecf658807c42710307d58" }, {
 			$pull: { "allProjects": { id: req.params.id } }
 		}, function(err, raw) {
@@ -96,7 +96,16 @@ router.get('/deleteProject/:id', function(req, res) {
 			if (err) {
 				res.send(false);
 			} else {
-				res.send(true);
+				// delete the project.
+				Project.remove({ id: req.params.id }, function(err, raw) {
+					if (err) {
+						console.log('err', err);
+						res.send(false);
+					} else {
+						console.log("raw", raw);
+						res.send(true);
+					}
+				});
 			}
 		});
 	} else {
