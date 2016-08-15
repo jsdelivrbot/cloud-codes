@@ -116,7 +116,14 @@ router.get('/deleteProject/:id', function(req, res) {
 
 // update project
 router.post('/updateProject', function(req, res) {
-	if (util.reqAuthenticated(req)) {
+	// if (util.reqAuthenticated(req)) {
+	// 	Project.update({ id: req.body.id }, {
+	// 		$set: {
+	// 			name: req.body.name
+	// 		}
+	// 	}, function(err, raw){
+	// 		//
+	// 	});
 		User.update({
 			_id: "57aecf658807c42710307d58",
 			"allProjects.id": req.body.id
@@ -131,8 +138,10 @@ router.post('/updateProject', function(req, res) {
 			if (err) {
 				console.log('err ', err);
 				res.send(false);
+				return false;
 			} else {
 				res.send(true);
+				return true;
 			}
 		});
 		// res.send(false);
