@@ -1,5 +1,7 @@
 var express = require('express');
 var shortid = require('shortid');
+var request = require('request');
+
 var router = express.Router();
 
 // load utilities
@@ -32,12 +34,17 @@ router.get('/initializeMe', function(req, res) {
 		// 57aecf658807c42710307d58
 		// { _id: req.user._id }
 		User.findOne({ _id: "57aecf658807c42710307d58" }, 'allProjects', function(err, response) {
-			console.log('allProjects ', response.allProjects);
-			res.send(response.allProjects);
+			if (err) {
+				res.status(500).send("Oh snap, Something went wrong!")
+			} else {
+				console.log('allProjects ', typeof(response.allProjects));
+				console.log('allProjects', response.allProjects);
+				res.send(response.allProjects);
+			}
 		});
 	} else {
 		// not logged in
-		res.send("invalid request");
+		res.status(403).send("Looks like u r a stranger!");
 	}
 });
 
@@ -116,14 +123,14 @@ router.get('/deleteProject/:id', function(req, res) {
 
 // update project
 router.post('/updateProject', function(req, res) {
-	// if (util.reqAuthenticated(req)) {
-	// 	Project.update({ id: req.body.id }, {
-	// 		$set: {
-	// 			name: req.body.name
-	// 		}
-	// 	}, function(err, raw){
-	// 		//
-	// 	});
+	if (util.reqAuthenticated(req)) {
+		// 	Project.update({ id: req.body.id }, {
+		// 		$set: {
+		// 			name: req.body.name
+		// 		}
+		// 	}, function(err, raw){
+		// 		//
+		// 	})};
 		User.update({
 			_id: "57aecf658807c42710307d58",
 			"allProjects.id": req.body.id
@@ -148,5 +155,11 @@ router.post('/updateProject', function(req, res) {
 	} else {
 		res.send("invalid request!")
 	}
+});
+
+router.get('/testReq', function(req, res) {
+	request('http://localhost:3000/apis/initializeMe', function(error, response, body) {
+		res.send(body);
+	});
 })
 module.exports = router;
