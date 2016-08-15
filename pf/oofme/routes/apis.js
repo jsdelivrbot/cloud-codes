@@ -1,3 +1,5 @@
+"use strict";
+
 var express = require('express');
 var shortid = require('shortid');
 var request = require('request');
@@ -31,9 +33,9 @@ router.get('/getShortID', function(req, res) {
 router.get('/initializeMe', function(req, res) {
 	if (util.reqAuthenticated(req)) {
 		// user logged in
-		// 57aecf658807c42710307d58
+		// 57b1e2f83f1b32d93e27a828
 		// { _id: req.user._id }
-		User.findOne({ _id: "57aecf658807c42710307d58" }, 'allProjects', function(err, response) {
+		User.findOne({ _id: "57b1e2f83f1b32d93e27a828" }, 'allProjects', function(err, response) {
 			if (err) {
 				res.status(500).send("Oh snap, Something went wrong!")
 			} else {
@@ -51,8 +53,8 @@ router.get('/initializeMe', function(req, res) {
 // addNewProject
 router.post('/addNewProject', function(req, res) {
 	// check if the user is logged in
-
 	if (util.reqAuthenticated(req)) {
+		let statusCount = 0;
 		var currentUser = util.getCurrentUser(req);
 		var NewProject = new Project({
 			id: req.body.id,
@@ -70,21 +72,31 @@ router.post('/addNewProject', function(req, res) {
 				console.log('err in adding new project', err);
 				res.send(false);
 			} else {
-				// if no err, update allProjects
-				User.update({ _id: "57aecf658807c42710307d58" }, {
-					$push: { "allProjects": req.body }
-				}, function(err, raw) {
-					// console.log('err', err);
-					// console.log('raw', raw);
-					if (err) {
-						console.log('err ', err);
-						res.send(false);
-					} else {
-						res.send(true);
-					}
-				});
+				console.log('NewProject', NewProject);
+				progress();
 			}
 		});
+		User.update({ _id: "57b1e2f83f1b32d93e27a828" }, {
+			$push: { "allProjects": req.body }
+		}, function(err, raw) {
+			if (err) {
+				console.log('err ', err);
+				res.send(false);
+			} else if (raw.nModified > 0) {
+				console.log('raw', raw);
+				progress();
+			} else {
+				res.send(false);
+			}
+		});
+
+		let progress = function() {
+			console.log('progress called');
+			statusCount++;
+			if (statusCount == 2) {
+				res.send(true);
+			}
+		}
 	} else {
 		// not logged in
 		res.send("invalid request");
@@ -95,7 +107,7 @@ router.post('/addNewProject', function(req, res) {
 router.get('/deleteProject/:id', function(req, res) {
 	// check if the user is logged in
 	if (util.reqAuthenticated(req)) {
-		User.update({ _id: "57aecf658807c42710307d58" }, {
+		User.update({ _id: "57b1e2f83f1b32d93e27a828" }, {
 			$pull: { "allProjects": { id: req.params.id } }
 		}, function(err, raw) {
 			// console.log('err', err);
@@ -132,7 +144,7 @@ router.post('/updateProject', function(req, res) {
 		// 		//
 		// 	})};
 		User.update({
-			_id: "57aecf658807c42710307d58",
+			_id: "57b1e2f83f1b32d93e27a828",
 			"allProjects.id": req.body.id
 		}, {
 			$set: {
