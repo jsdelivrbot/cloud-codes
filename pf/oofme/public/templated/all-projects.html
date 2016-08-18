@@ -40,7 +40,7 @@
 							<md-checkbox ng-checked="isChecked(project.id)" ng-click="toggleCheck(project.id)" md-no-ink aria-label="No Ink Effects"></md-checkbox>
 						</td>
 						<td>
-							<md-button class="md-primary">{{project.name}}</md-button>
+							<md-button ng-click="goToProject(project)" class="md-primary">{{project.name}}</md-button>
 						</td>
 						<td>
 							<md-icon>mode_edit</md-icon>

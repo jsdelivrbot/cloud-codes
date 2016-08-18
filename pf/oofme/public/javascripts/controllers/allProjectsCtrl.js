@@ -6,7 +6,7 @@
 angular.module('oofme')
 
 .controller('allProjectsCtrl', ['$scope', '$http', '$state', 'initialData', '$mdDialog', '$mdMedia', 'Store', function($scope, $http, $state, initialData, $mdDialog, $mdMedia, Store) {
-	Store.allProjects = initialData.projects;
+	Store.allProjects = initialData;
 	$scope.projects = Store.allProjects;
 	// console.log(Store);
 	$scope.isChecked = function(projectID) {
@@ -43,6 +43,13 @@ angular.module('oofme')
 		}
 	};
 
+	// go to a specific project
+	$scope.goToProject = function(project) {
+		console.log('project ', project);
+		Store.currentLoadedProject = project;
+		$state.go('projectDash');
+	}
+
 	// handle delete dialog
 	$scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
 	$scope.deleteProj = function(ev, project) {
@@ -57,13 +64,30 @@ angular.module('oofme')
 				fullscreen: useFullScreen
 			})
 			.then(function(answer) {
-				// $scope.status = 'You said the information was "' + answer + '".';
-				// console.log(answer);
-				Store.allProjects.splice(Store.allProjects.indexOf(answer), 1);
-				Store.checkedList.splice(Store.checkedList.indexOf(answer.id), 1);
-				// console.log(Store);
+				// make it so on server > mongo
+				$http.get('/apis/deleteProject/' + answer.id)
+					.then(
+						// success
+						function(response) {
+							console.log('in success :response ', response);
 
-				Store.showSimpleToast(answer.name + " deleted.");
+							if (response.data == false) {
+								// $state.go("error");
+								alert("something went wrong");
+							} else {
+								Store.allProjects.splice(Store.allProjects.indexOf(answer), 1);
+								Store.checkedList.splice(Store.checkedList.indexOf(answer.id), 1);
+								Store.showSimpleToast(answer.name + " deleted.");
+							}
+						},
+						// failure
+						function(response) {
+							console.log('response ', response);
+							console.log("error in deleting post");
+							$state.go('error');
+						}
+					);
+				// Store.showSimpleToast(answer.name + " deleted.");
 			}, function() {
 				// $scope.status = 'You cancelled the dialog.';
 				// $scope.toastMessage = 'Cancelled';
@@ -90,25 +114,52 @@ angular.module('oofme')
 			.then(function(answer) {
 				// $scope.status = 'You said the information was "' + answer + '".';
 				// $scope.toastMessage = answer;
-				Store.initializingProject = false;
 				if (answer) {
 					Store.showSimpleToast("Initializing " + answer);
-					Store.initializingProject = true;
 					$http.get('/apis/getShortID')
-						.then(function(response) {
-							// console.log(JSON.stringify(response.data));
-							Store.allProjects.push({
-								name: answer,
-								id: response.data
+						.then(
+							// success
+							function(response) {
+								if (response.data) {
+									$http.post('apis/addNewProject', {
+										name: answer,
+										id: response.data,
+										published: false
+									}).then(
+										// success callback
+										function(resp) {
+											if (resp.data == true) {
+												Store.allProjects.push({
+													name: answer,
+													id: response.data,
+													published: false
+												});
+												Store.currentLoadedProject = {
+													name: answer,
+													id: response.data
+												};
+											} else {
+												// $state.go('error');
+												alert("the opetation wasn't success");
+												console.log('post response.data ', response.data);
+											}
+										},
+										// failure callback
+										function(response) {
+											console.log('response ', response);
+											$state.go('error');
+
+										}
+									);
+
+								}
+
+								// post the data to server to save it remotely
+
 							});
-							Store.currentLoadedProject = {
-								name: answer,
-								id: response.data
-							};
-						});
 					$state.go('projectDash');
 					// console.log(JSON.stringify(Store.allProjects));
-					console.log(JSON.stringify(Store));
+					// console.log(JSON.stringify(Store));
 					// console.log(JSON.stringify(id));
 
 				}

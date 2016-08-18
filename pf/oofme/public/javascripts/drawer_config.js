@@ -27,7 +27,7 @@ angular.module('oofme')
 				initialData: function($http) {
 					return $http.get('/apis/initializeMe')
 						.then(function(response) {
-							// console.log(JSON.stringify(response.data));
+							console.log(response.data);
 							return response.data;
 						});
 				}
@@ -67,5 +67,11 @@ angular.module('oofme')
 					// controller: 'projectDash_settingsCtrl'
 				}
 			}
-		});
+		})
+
+	// error page
+	.state('error', {
+		url: "/err",
+		template: "<h1>Something went wrong!</h1><h2>Sending an engineer to fix this!</h2>",
+	});
 });
