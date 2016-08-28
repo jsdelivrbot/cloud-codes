@@ -2,7 +2,7 @@
 describe('Store (Factory)', function() {
 	var Store;
 
-	beforeEach(angular.mock.module('oofme'));
+	beforeEach(module('oofme'));
 
 	beforeEach(inject(function(_Store_) {
 		Store = _Store_;

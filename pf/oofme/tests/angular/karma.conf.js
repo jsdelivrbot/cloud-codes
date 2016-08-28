@@ -12,9 +12,8 @@ module.exports = function(config) {
 		// available frameworks: https://npmjs.org/browse/keyword/karma-adapter
 		frameworks: ['jasmine'],
 
-
 		// list of files / patterns to load in the browser
-		files: [
+			files: [
 			'../../node_modules/angular/angular.js',
 			'../../public/node_modules/angular-material/angular-material.js',
 			'../../public/node_modules/angular-aria/angular-aria.js',
@@ -22,6 +21,7 @@ module.exports = function(config) {
 			'../../public/node_modules/angular-animate/angular-animate.js',
 			'../../node_modules/angular-ui-router/release/angular-ui-router.min.js',
 			'../../node_modules/angular-mocks/angular-mocks.js',
+			'../../node_modules/jasmine-expect/dist/jasmine-matchers.js',
 			'../../public/javascripts/drawer_config.js',
 			// to test
 			'../../public/javascripts/**/*.js',
@@ -45,7 +45,7 @@ module.exports = function(config) {
 		reporters: ['mocha'],
 		mochaReporter: {
 			colors: {
-				success: 'Light-Green',
+				// success: 'Light-Green',
 				// info: 'bgGreen',
 				// warning: 'cyan',
 				// error: 'bgRed'
