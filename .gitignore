@@ -1,7 +1,8 @@
 # our case		 #
 ##################
 node_modules/
-
+bower_components/
+.idea
 
 
 # Compiled source #
