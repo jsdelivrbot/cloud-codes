@@ -1,0 +1,53 @@
+v1.0.1:
+    main:
+      ✔ add link < index/section-2 -collegeManage...sln -learnMore @done (16-10-31 14:15)
+      ✔ add link < produces/collageManage..sln/cards @done (16-10-31 14:16)
+      ✔ add link < products/cms -viewDemo href to new CMS page @done (16-10-31 14:42)
+      ✔ add CMS page @done (16-10-31 14:42)
+      ✔ add CMS to products page @done (16-10-31 14:42)
+      ✔ separate CMS and SMS in products.html @done (16-10-31 15:07)
+      ✔ adjust bhoechie tabs > for large content  @done (16-10-31 15:41)
+      ✔ fix broken links in CMS specific page @done (16-10-31 15:42)
+      ✔ customer care bottom @done (16-10-31 15:49)
+      ✔ add price list @done (16-11-02 11:51)
+      ✔ add downloadable pdf pages @done (16-11-02 11:58)
+      ✔ footer  copyright script @done (16-11-03 10:36)
+      ✔ Fix links in php-ed version files --all files @done (16-11-03 10:36)
+      ✔ PHP optimize all pages @done (16-11-03 10:36)
+      ✔ change more dropdown width in all 2 headers @done (16-11-03 10:42)
+      ✔ adjust logo position on small screen @done (16-11-03 10:50)
+      ✔ change mobile screen menu color @done (16-11-03 10:51)
+      ☐ Fix dropdown issue in Firefox and edge.
+      CMS:
+          ✔ contact details in cms specific page: bottom form @done (16-11-03 13:03)
+          ✔ handle POST request @done (16-11-03 13:10)
+          ✔ add functionality to buy now buttons in CMS page form. @done (16-11-03 13:16)
+          ☐ doller cents issue
+          ☐ add quote to CMS
+          ☐ add social links
+          ☐ social links in CMS specific page
+          ☐ check links.
+
+      ✔ SECURE it by adding an index.html at every dir @done (16-11-03 14:43)
+      ✔ color adjustments @done (16-11-03 14:43)
+      ✔ upgrade bower.json @done (16-11-03 14:56)
+      ✔ upgrade readme.md @done (16-11-03 15:20)
+      ☐ Education -> Acadamic in landing page.
+      ☐ Privacy Policy & Terms of Service for both pages.
+      ☐ Create Pages for Privacy Policy & Terms of Service.
+      ☐ social links in Main page
+      ☐ update address in footer.
+      ☐ check images for copyright issues
+      ☐ remove local dependencies as much as possible
+      ☐ meta descriptions
+      ☐ review
+      build process:
+          ✔ make gulpfile. @done (16-11-04 12:18)
+          ✔ make build-config file based on gulpfile. @done (16-11-04 10:33)
+          add comments in html:
+              ✔ for bundled css @done (16-11-04 12:19)
+              ✔ for removing the <link> tags that are being invalidated by build preocess. @done (16-11-04 12:19)
+Update v2:
+  ☐ Add contents to educatuion
+  ☐ remove security essentials
+  ☐ add picture < index/section-2 -laptop
