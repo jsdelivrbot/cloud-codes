@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<!-- include common meta files -->
+	<?php include 'templates/meta/head.html' ?>
+
+	<meta name="description" content="Interland Technologies Pvt.ltd. This is a page inside Interland's official website.">
+	<meta name="keywords" content="Interland, Official website, Technopark">
+
+	<title>Interland | Consult</title>
+
+	<script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+	
+	<!-- html imports -->
+	<link rel="import" href="templates/picturify-header.html">
+
+</head>
+
+<body>
+	<?php include 'templates/header-navbar.html' ?>
+	<picturify-header name="Consulting" background="images/tea.jpg">
+		<div class="row">
+			<div class="col l8 content">
+				<h2>Unique series</h2>
+				<p style="font-size: 1.5em;">From outsourcing to design principles.</p>
+			</div>
+			<div class="col l4 image-div">
+				<!-- <img src="images/letter.svg" alt="letter"> -->
+			</div>
+		</div>
+	</picturify-header>
+
+	<div class="container product-lay">
+		<!-- product-1 -->
+		<div class="row each-pro" id="overview">
+			<div class="col l4 pro-class-container">
+				<h3 class="pro-class">Overview</h3>
+			</div>
+			<div class="col l8 pro-content-container">
+				<p>In today's economy, you need to move forward quickly and confidently with application development and implementation. But you don't always have all the skills you need in house. Inter Land Consulting Services gives you ready access to the expertise you need. Our consultants are experienced professionals who combine a solid technology foundation with an in-depth understanding of business processes. Inter Land consultants can help you and your team work at peak productivity, so you have more time to focus on strategic initiatives.</p>
+				<ul class="collapsible" data-collapsible="accordion">
+					<li>
+						<div class="collapsible-header"><i class="material-icons">subject</i>Read More on Consulting</div>
+						<div class="collapsible-body">
+							<p>
+								Inter Land Technologies offers consulting services for a variety of information technology needs, ranging from high level strategic direction to requirement for a given project.
+								<br>
+								<br> Our consultants are the cream of the talent crop, skimmed from some of the India’s best universities and institutions. And at Inter Land their skills are honed to perfection through a series of extensive training programs and exposure to the latest and futuristic technologies and tools.
+							</p>
+							<p>Our training activities encompass orientation in Software Development Methodologies, Quality Management and Software Technology, besides all areas of personality development like communication skills, language, teamwork and, personal grooming.</p>
+							<br>
+							<p>Inter Land keeps pace with dynamic software technology through its Continuing Education Programs for its consultants. What makes these programs extremely effective is the combination, on the faculty, of academic luminaries and IT experts and software professionals from within Inter Land as well as its major alliance partners.</p>
+						</div>
+					</li>
+					<li>
+						<div class="collapsible-header"><i class="material-icons">assignment_turned_in</i>Consulting services</div>
+						<div class="collapsible-body">
+							<p>Inter Land designs, develops, installs, and maintains customized application systems. We evaluate, select, and implement packaged software. Inter Land Consultation's structured approach to application development enables businesses to increase their productivity and maximize their return on investment.</p>
+							<br>
+							<p>Our success in providing solutions to our clients’ demand that our professionals keep pace with the changes in technology. We continually invest in formal training and evaluation of tools, languages, and development techniques -- all with the goal of bringing experience and expertise to our clients. Many of our staff are certified in the use of Microsoft and PowerSoft tools, combining that expertise with extensive project experience offers our clients an unbeatable team.</p>
+							<br>
+							<p>Our team is specialize in providing solutions, establishing fixed budgets and time lines. Our teams are comprised of specialists who have specific roles and work closely with one another using a proven methodology.</p>
+							<br>
+							<p>To serve our clients, we offer a full range of capabilities including:</p>
+							<br>
+							<ul class="disc">
+								<li>Definition of systems requirements</li>
+								<li>Design of application solutions</li>
+								<li>Design of technical and application architectures</li>
+								<li>Technical staff augmentation</li>
+								<li>Quality assurance and control audits</li>
+								<li>Total application outsourcing</li>
+							</ul>
+							<br>
+							<p>Application Development Services range from modification of a single program to end-to-end implementation of large, complex vital business systems. Inter Land assists our clients in defining and implementing the correct technical solution to achieve their business objectives. Our project managers, architects, DBAs, designers, and programmers are able to provide individual expertise or work as a team with our clients.</p>
+						</div>
+					</li>
+					<li>
+						<div class="collapsible-header"><i class="material-icons">subject</i>System Analysis and Design</div>
+						<div class="collapsible-body">
+							<ul class="disc">
+								<li>Structured and Object Oriented Analysis & design</li>
+								<li>Logical and Physical Database Design for: Oracle, SQL Server, Sybase, Access</li>
+								<li>Application Architecture</li>
+								<li>System Architecture</li>
+							</ul>
+						</div>
+					</li>
+					<li>
+						<div class="collapsible-header"><i class="material-icons">subject</i>Application Development and System Integration</div>
+						<div class="collapsible-body">
+							<ul class="disc">
+								<li>Program Design</li>
+								<li>Data Conversion</li>
+								<li>Functional, Stress, Performance, and Acceptance Testing </li>
+								<li>Database implementation </li>
+								<li>Code Development</li>
+							</ul>
+							<br>
+							<div class="card-panel teal">
+								<span class="white-text"><strong>Using: </strong>Visual Basic, C++, Java (applets, servlets), COBOL, HTML, Web Application Servers, Data integration tools (MQ Series, Notes Pump), ODBC, JDBC,Clarion, Notes, Powerbuilder</span>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="collapsible-header"><i class="material-icons">subject</i>System Installation</div>
+						<div class="collapsible-body">
+							<ul class="disc">
+								<li>Production Preparation </li>
+								<li>User and Technical Training </li>
+								<li>User and Technical Documentation </li>
+								<li>Preparation of Installation Media </li>
+								<li>Production Migration</li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- product-2 -->
+		<div class="row each-pro" id="outsourcing">
+			<div class="col l4 pro-class-container">
+				<h3 class="pro-class">Out Sourcing</h3>
+			</div>
+			<div class="col l8 pro-content-container">
+				<p>Interland Consulting offers a broad range of business and technical services to help you define, design and deliver Banking solution.</p>
+				<ul class="collapsible" data-collapsible="accordion">
+					<li>
+						<div class="collapsible-header"><i class="material-icons">subject</i>ABAP Outsourcing</div>
+						<div class="collapsible-body">
+							<p>ABAP Outsourcing provides all the essential support, starting from the BDCs to development of Mini Apps. Inter Land on-site services and off-site support centers can help you in the whole development cycle - converting functional requirements into technical specifications, pseudo coding, coding followed by rigorous unit testing and transport to SAP production client followed by performance analysis.</p>
+
+						</div>
+					</li>
+					<li>
+						<div class="collapsible-header"><i class="material-icons">subject</i>Basis Outsourcing</div>
+						<div class="collapsible-body">
+							<p>Basis Outsourcing provides complete start-to-finish life cycle support for your SAP application. To help you manage basis services, Inter Land offers expert, field-tested consultants who specialize in OS, server, network and database administration - and have long-term experience on SAP. Given the high rate of employee turnover and continuous training in the IT industry, it's sometimes difficult for companies to train and retain the personnel necessary to manage SAP Basis requirements. Inter Land fills that gap by giving clients, access to the kind of high-quality SAP support that can maximize the long-term value of SAP deployment.</p>
+						</div>
+					</li>
+					<li>
+						<div class="collapsible-header"><i class="material-icons">subject</i>Value Offerings from Interland</div>
+						<div class="collapsible-body">
+							<p>Enterprise Services are designed to provide organizations with the ability to cost-effectively deploy and upgrade SAP enterprise applications, while reducing typical risks associated with ERP systems. Depending on your situation, we offer a complete range of services that you can use independently, or bundled together to create a comprehensive solution.</p>
+						</div>
+					</li>
+					<li>
+						<div class="collapsible-header"><i class="material-icons">subject</i>Upgrade Assessment Services</div>
+						<div class="collapsible-body">
+							<p>It provides a documented, repeatable approach designed to quickly analyze your current implementation, various other current applications by assessing the impact of upgrading to the current SAP release.</p>
+						</div>
+					</li>
+					<li>
+						<div class="collapsible-header"><i class="material-icons">subject</i>Upgrade Services</div>
+						<div class="collapsible-body">
+							<p>Upgrade activities include those tasks necessary to upgrade enterprise applications because of a new or upgrade release from SAP. Inter Land can reduce upgrade cost, risk and duration while increasing the value to you by high up-time during performing upgrades.</p>
+						</div>
+					</li>
+					<li>
+						<div class="collapsible-header"><i class="material-icons">subject</i>Rapid Implementation Services</div>
+						<div class="collapsible-body">
+							<p>It provides efficient, repeatable methodologies for enabling an enterprise application in your environment. Implementation time for an enterprise application can be reduced by more than half.</p>
+						</div>
+					</li>
+					<li>
+						<div class="collapsible-header"><i class="material-icons">subject</i>Optimization Services</div>
+						<div class="collapsible-body">
+							<p>It allows you to better realize the value of your already installed enterprise application in a lesser period than the targeted ROI period.</p>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- product-3 -->
+		<div class="row each-pro">
+			<div class="col l4 pro-class-container">
+				<h3 class="pro-class">In-House Development</h3>
+			</div>
+			<div class="col l8 pro-content-container">
+				<p>Inter Land has a full staff of senior analysts, developers, operation managers, and end-user computing specialists, and LAN/WAN technicians for In-house development. Our staff is made up of professionals who have the best skills and experience available in our market area, as well as an excellent reputation for providing information system solutions.</p>
+				<p>The key to any successful software project is effective planning and design. Inter Land utilizes Oracle's Designer/2000 and Power Builder tools to rapidly develop and deploy scalable, cross-platform, distributed applications. Inter Land can design and deliver accurate and timely enterprise client/server systems adaptable to your changing business needs. In today's fast paced environment, let Inter Land work with you to design and develop your state-of-the-art applications.</p>
+			</div>
+		</div>
+
+		<!-- product-4 -->
+		<div class="row each-pro">
+			<div class="col l4 pro-class-container">
+				<h3 class="pro-class">Web Design & Hosting</h3>
+			</div>
+			<div class="col l8 pro-content-container">
+				<p>The most important part of designing a website is to clarify the goals and expectations. Websites are created to fulfill a specific need, and all of the elements of the site should be designed toward that end. With our graphics, programming and training background, we can develop a website that invites, informs and enlightens the visitor, but most importantly, a website that meets its goals. </p>
+				<p>Advanced Hosting provides the management/support, facilities, network, hardware, and software infrastructure for tremendous scalability and flexibility in a highly-available environment.</p>
+				<ul class="collapsible" data-collapsible="accordion">
+					<li>
+						<div class="collapsible-header"><i class="material-icons">subject</i>Web Site Design</div>
+						<div class="collapsible-body">
+							<p>A comprehensive array of services to meet the varying needs of clients. Your site is designed to meet the needs of your customers, including Page layout, graphics design, sophisticated Access and Oracle data base applications, forms, tables, video, sound and many other custom features.</p>
+						</div>
+					</li>
+					<li>
+						<div class="collapsible-header"><i class="material-icons">subject</i>Web Site Search Engine Registration</div>
+						<div class="collapsible-body">
+							<p>Our sophisticated Search Engine Registration techniques provide our clients with a variety of ways to use keywords to help locate their "e*customer." Customized to fit your needs and budget, we offer programs ranging from basic site hosting and registration to a comprehensive target marketing program with a goal of achieving placement in the Top 25 of major search engines that utilize meta tags. By locating our site, you have seen evidence of our capabilities. We welcome the opportunity to discuss your needs in detail. This is the most important step in increasing your business via the Internet.</p>
+						</div>
+					</li>
+					<li>
+						<div class="collapsible-header"><i class="material-icons">subject</i>Web Site Hosting</div>
+						<div class="collapsible-body">
+							<p>We will host your site on a full-featured server with the capability to support all web technology as well as full data base applications. Our server is supported 24 hours a day, 7 days a week with complete back up for your site, all at very competitive prices.</p>
+						</div>
+					</li>
+					<li>
+						<div class="collapsible-header"><i class="material-icons">subject</i>Database Applications</div>
+						<div class="collapsible-body">
+							<p>We can design a database to allow you to track your customer accounts for anything from online stock trading to purchases of doll houses. We can show you how to eliminate most of the hard-copy paperwork in any business. This can pay for itself in reduced coping, faxing, mailing and filing. Specializing in Oracle, Microsoft SQL and Access databases.</p>
+						</div>
+					</li>
+					<li>
+						<div class="collapsible-header"><i class="material-icons">subject</i>Web Site Administration/Maintenance</div>
+						<div class="collapsible-body">
+							<p>We will help you develop your web site as your business develops. We can maintain an existing web site, maintain and update a web site we create for you, or even redesign an existing site.</p>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- product-5 -->
+		<div class="row each-pro">
+			<div class="col l4 pro-class-container">
+				<h3 class="pro-class">E-Business</h3>
+			</div>
+			<div class="col l8 pro-content-container">
+				<p>E-Commerce is no longer a business advantage but a business imperative for any enterprise in today's dynamic world. Inter Land offers end-to-end consultancy from design and implementation of the e-strategy to building of secure payment mechanisms and mission critical applications for banking and health care. The range of the eCommerce solutions that we offer is:</p>
+				<ul class="disc">
+					<li><strong>Computer Telephony Integration (CTI) :</strong> - to provide complete interactive voice responses for facilitating business transactions.</li>
+					<li><strong>ERP Integration </strong> to develop integration solutions for client-specific ERP and eCommerce (e.g. SAP Integration).</li>
+					<li><strong>E-Governance</strong> We assist governments to implement IT-led governance, which enables G2C services for their citizens.</li>
+					<li><strong>Multi-tier Client/Server Implementation over Intranets/Extranets</strong>Custom development of cost-effective and quality web-based applications and database design for fully functional transaction processing systems.</li>
+					<li><strong>Portals, Virtual Marts, Secure Payment Mechanism and Web</strong>- enabling of legacy systems.</li>
+				</ul>
+				<br>
+				<ul class="collapsible" data-collapsible="accordion">
+					<li>
+						<div class="collapsible-header"><i class="material-icons">subject</i>Read more</div>
+						<div class="collapsible-body">
+							<p>Inter Land Consulting Services provides the process and technical expertise to assist leading companies take advantage of E-Commerce and Internet technologies to:</p>
+							<br>
+							<ul class="disc">
+								<li>Improve customer support,</li>
+								<li>Enhance the supply chain and,</li>
+								<li>Generate new revenue.</li>
+							</ul>
+							<br>
+							<p>Before beginning an E-Commerce project, Inter Land recommends companies:</p>
+							<br>
+							<ul class="disc">
+								<li>Clearly define goals and objectives, </li>
+								<li>Focus on business processes and their improvement and,</li>
+								<li>Employ extensive professional expertise from requirements through implementation.</li>
+							</ul>
+							<br>
+							<p>To effectively leverage the Internet for impact in core business processes, more than graphical web site development skills are Required. AIS Consulting provides expertise in the following areas:</p>
+							<br>
+							<ul class="disc">
+								<li>»  Business Strategy for the Internet 
+</li>
+								<li>»  E-Commerce technology 
+</li>
+								<li>Secure electronic payments </li>
+								<li>Web application server technologies </li>
+								<li>Legacy system integration </li>
+								<li>Internet security and firewalls </li>
+								<li>Messaging integration </li>
+								<li>Call Center technology including web-based integration</li>
+								<li>VSAT implementation and support</li>
+								<li>Satellite data center </li>
+								<li>EDI payment system b/w Satellite data center and partner </li>
+								<li>E-banking </li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- winding up -->
+	<div class="winding-up teal lighten-1" style="margin-top:0px;">
+		<div class="header-strip">
+			<h3>call our customer care &nbsp;<span style="color:#cafffa;">0471-2710424</span></h3>
+		</div>
+		<div class="content-strip">
+			<!-- other content -->
+		</div>
+	</div>
+
+	
+	<!-- footer -->
+	<?php include 'templates/page-footer.html' ?>
+	
+	<!-- include bottom scripts -->
+	<?php include 'templates/meta/bottom-scripts.html' ?>
+
+</body>
+
+</html>

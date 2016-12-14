@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<!-- include common meta files -->
+	<?php include 'templates/meta/head.html' ?>
+
+	<meta name="description" content="Interland Technologies Pvt.ltd. This is a page inside Interland's official website.">
+	<meta name="keywords" content="Interland, Official website, Technopark">
+	
+	<title>Interland | Education</title>
+
+	<script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+
+	<!-- html imports -->
+	<link rel="import" href="templates/picturify-header.html">
+</head>
+
+<body>
+	<?php include 'templates/header-navbar.html' ?>
+
+	<picturify-header name="Education" background="images/road.jpg">
+		<div class="row">
+			<div class="col l8 content">
+				<h2>Explore our programs</h2>
+				<p><i class="material-icons">place</i><span> Riaydh, KSA.</span></p>
+				<!-- <a href="#" class="btn white blue-text">Know more</a>			 -->
+			</div>
+			<div class="col l4 image-div">
+				<!-- <img src="images/letter.svg" alt="letter"> -->
+			</div>
+		</div>
+	</picturify-header>
+	
+	<div class="container product-lay">
+		<!-- product-1 -->
+		<div class="row each-pro">
+			<div class="col l4 pro-class-container">
+				<h3 class="pro-class">IT Security Training</h3>
+			</div>
+			<div class="col l8 pro-content-container">
+				<p>Maximize your training time and turbo-charge your career in security by learning the full Inter Land Security Essentials curriculum needed to qualify for the GSEC certification. In this track you will learn the language and underlying theory of computer security. At the same time you will learn the essential, up-to-the-minute knowledge and skills required for effective performance if you are given the responsibility for securing systems and/or organizations. This course meets both of the key promises Inter Land makes to our students: (1) You will gain up-to-the-minute knowledge you can put into practice immediately upon returning to work; and, (2) You will be taught by the best security instructors in the industry. As always, great teaching sets Inter Land courses apart, and Inter Land ensures this by choosing instructors who have ranked highest in a nine-year competition among potential security faculty.</p>
+				<div class="card-panel blue">
+					<span class="white-text"><strong>Note: </strong>This course is endorsed by the Committee on National Security Systems (CNSS) NSTISSI 4013 Standard for Systems Administrators in Information Systems Security (INFOSEC).</span>
+				</div>
+			</div>
+		</div>
+
+		<!-- product-2 -->
+		<div class="row each-pro">
+			<div class="col l4 pro-class-container">
+				<h3 class="pro-class">MCSE Training Courses</h3>
+			</div>
+			<div class="col l8 pro-content-container">
+				<p>High quality, self-paced MCSE training courses to help achieve your goals conveniently Anytime, Anywhere!. 12-months of e-Learning FREE quarterly course additions and updates, dedicated, professional technical support, access 24 hours a day, 7 days a week from any PC with Internet access. No parking hassles, no missed assignments, and nothing to install.</p>
+				<ul class="collapsible" data-collapsible="accordion">
+					<li>
+						<div class="collapsible-header"><i class="material-icons">subject</i>MCSE training courses available online</div>
+						<div class="collapsible-body">
+							<ul class="disc">
+								<li>Installation provides an overview of the installation process for Microsoft Windows 2000 Server and has step-by-step procedures for installation tasks.</li>
+								<li>Hardware describes how to install, configure, manage, and troubleshoot hardware devices in a Windows 2000 environment.</li>
+								<li>Controlling Access to Files and Folders shows how to configure interoperability and Web services, manage users and groups, share folders, and manage a distributed file system.</li>
+								<li>Controlling Access to Web Resources and Printers describes the process and capabilities of managing resources shared on a network.</li>
+								<li>Optimizing describes how to manage processes, monitor system resources, and optimize disk performance.</li>
+								<li>Recovering from Disaster describes system tools used to save and recover data.</li>
+								<li>Configuring Disks and Volumes describes how to monitor, configure, and troubleshoot disks and volumes.</li>
+								<li>Administering Disks describes how to manage user profiles, data compression, and disk quotas, as well as how to recover from a disk failure.</li>
+								<li>Networking describes how to install, configure, and troubleshoot network protocols, services, and connections.</li>
+								<li>Implementing Remote Access describes how to install, configure, and troubleshoot shared access, remote access, and virtual private networks.</li>
+								<li>Implementing Terminal Services describes how to install, configure, monitor, and troubleshoot Terminal Services.</li>
+								<li>Using Security Features describes how to implement, configure, manage, and troubleshoot security features.</li>
+								<li>Windows XP Installation provides users with an overview of the installation process for Microsoft Windows XP Professional.</li>
+								<li>Administering Resources shows how to manage files, folders, and file systems. In addition, it describes the process and capabilities of managing resources shared on a network.</li>
+								<li>Configuring Hardware describes how to view properties of disks, configure disks, maintain disks, and work with removable media. It also describes the installation and configuration of hardware devices.</li>
+								<li>Optimizing the System teaches users how to monitor, troubleshoot, and back up the system for optimum performance.</li>
+								<li>Configuring the Desktop describes how to configure user profiles and support for multiple languages and locations.</li>
+								<li>Networking the System teaches users how to configure and connect a network. It also shows users how to configure and troubleshoot the TCP/IP protocol.</li>
+								<li>Securing the System provides the user with an overview of user and group accounts. It also provides users with an overview of configuring, monitoring, and maintaining systems security using audit policies, security templates, and encryption technology.</li>
+							</ul>
+						</div>
+					</li>
+					<li>
+						<div class="collapsible-header"><i class="material-icons">subject</i>Features of our courses</div>
+						<div class="collapsible-body">
+							<ul class="disc">
+								<li>Certificates of Completion </li>
+								<li>Instructional steps -- walk through a procedure</li>
+								<li>Exercises -- try it out </li>
+								<li>Notes - See additional information related to the topic in the text</li>
+								<li>Tips - See a different, faster, or easier way of doing something </li>
+								<li>Quick References - See a quick reference guide to the features introduced in a chapter</li>
+								<li>Details - Display more detailed information related to the current topic</li>
+								<li>Hotwords - See related information</li>
+								<li>Navigation Bar - Maneuver easily through the courses </li>
+								<li>Topics and Index -- with searching feature and hyper-links </li>
+								<li>Printable Exercises - PDF downloadable files </li>
+								<li>Sample Application Files - PDF downloadable files</li>
+								<li>Glossary</li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+				<p>Skill Assessment - can be used for pre and post-testing -- tracking first try, best try and grade - if passed, green check mark will appear as 'mastered' - hyperlinks to units within the course to go back and re-take a certain unit again. Use as pre-test to determine which topics you want to focus on and to go directly into that unit.</p>
+			</div>
+		</div>
+
+		<!-- product-3 -->
+		<div class="row each-pro">
+			<div class="col l4 pro-class-container">
+				<h3 class="pro-class">Technical Requirements</h3>
+			</div>
+			<div class="col l8 pro-content-container">
+				<p>200MHz Pentium with 32MB Ram. 640 x 480 256-color video (800 x 600 is recommended). Windows 95, 98, NT, 2000, or XP. Internet Explorer 5.0 or higher required. Minimum Connection Speed: 28.8k. Author ware recommended but not required. JavaScript must be enabled. Netscape and AOL browsers not supported.</p>
+				<p>Learning comes to life with challenging labs, critical assessment and real-world insight from experts with vast experience in the subject matter. Engage in dynamic learning where multiple senses help reinforce learning concepts. Our proven methodology provides an unequalled experience with exceptional results Learning that's Easy, Convenient and Affordable! High-quality, online, self-paced courses designed to help you achieve your goals. Affordable annual subscription plans give you unlimited access to an entire suite of topics at prices that you just won't find anywhere else.</p>
+				<p>Our courses are based on sound principles, from extensive research in instructional design, adult learning and information processing. All courses are design so that new knowledge and skills will be remembered and retrieved for future use. Each course includes a 30-questions skill assessment, which evaluates your knowledge of the course material. You can be assured that this high-quality, instructionally-sound online product will enhance your professional and personal growth.</p>
+				<p>Sign up for our courses right now, and join the ranks of people who are taking financial advantage of the explosion in the Information Technology field.</p>
+				<a href="mailto:info@interlandtech.com" class="btn blue">sign up</a>
+			</div>
+		</div>
+	</div>
+	
+	<!-- winding up -->
+	<div class="winding-up teal lighten-1" style="margin-top:0px;">
+		<div class="header-strip">
+			<h3>call our customer care &nbsp;<span style="color:#cafffa;">0471-2710424</span></h3>
+		</div>
+		<div class="content-strip">
+			<!-- other content -->
+		</div>
+	</div>
+
+	<!-- footer -->
+	<?php include 'templates/page-footer.html' ?>
+	
+	<!-- include bottom scripts -->
+	<?php include 'templates/meta/bottom-scripts.html' ?>
+</body>
+
+</html>

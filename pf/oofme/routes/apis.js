@@ -33,15 +33,17 @@ router.get('/getShortID', function(req, res) {
 router.get('/initializeMe', function(req, res) {
 	if (util.reqAuthenticated(req)) {
 		// user logged in
-		// 57b1e2f83f1b32d93e27a828
+		// 57b57df37212bf162497d8ab
 		// { _id: req.user._id }
-		User.findOne({ _id: "57b1e2f83f1b32d93e27a828" }, 'allProjects', function(err, response) {
+		User.findOne({ _id: "57b57df37212bf162497d8ab" }, 'allProjects', function(err, response) {
 			if (err) {
-				res.status(500).send("Oh snap, Something went wrong!")
-			} else {
+				res.status(500).send("Oh snap, Something went wrong!");
+			} else if(response) {
 				console.log('allProjects ', typeof(response.allProjects));
 				console.log('allProjects', response.allProjects);
 				res.send(response.allProjects);
+			}else{
+				res.status(500).send("Oh snap, Something went wrong!");
 			}
 		});
 	} else {
@@ -76,7 +78,7 @@ router.post('/addNewProject', function(req, res) {
 				progress();
 			}
 		});
-		User.update({ _id: "57b1e2f83f1b32d93e27a828" }, {
+		User.update({ _id: "57b57df37212bf162497d8ab" }, {
 			$push: { "allProjects": req.body }
 		}, function(err, raw) {
 			if (err) {
@@ -107,7 +109,7 @@ router.post('/addNewProject', function(req, res) {
 router.get('/deleteProject/:id', function(req, res) {
 	// check if the user is logged in
 	if (util.reqAuthenticated(req)) {
-		User.update({ _id: "57b1e2f83f1b32d93e27a828" }, {
+		User.update({ _id: "57b57df37212bf162497d8ab" }, {
 			$pull: { "allProjects": { id: req.params.id } }
 		}, function(err, raw) {
 			// console.log('err', err);
@@ -144,7 +146,7 @@ router.post('/updateProject', function(req, res) {
 		// 		//
 		// 	})};
 		User.update({
-			_id: "57b1e2f83f1b32d93e27a828",
+			_id: "57b57df37212bf162497d8ab",
 			"allProjects.id": req.body.id
 		}, {
 			$set: {

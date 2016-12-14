@@ -2,6 +2,7 @@
 // angular config //
 ////////////////////
 // Here starts the clint-side angular app flow.
+
 angular.module('oofme', ['ngMaterial', 'ui.router']);
 
 angular.module('oofme')

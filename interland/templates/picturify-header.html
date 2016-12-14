@@ -1,0 +1,106 @@
+<!-- picturify-header -->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="picturify-header">
+	<template>
+
+		<style>
+		:host {}
+		/* picturify */
+		
+		.picturify {
+			width: 100%;
+			height: 426px;
+			position: relative;
+		}
+		
+		.picturify .back,
+		.picturify .front {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		
+		.picturify .back {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			overflow: hidden
+		}
+		
+		.picturify .back img {
+			flex-shrink: 0;
+			/* width: inherit; */
+		}
+		
+		.picturify .front {
+			z-index: 3;
+		}
+		/* page-banner-thin */
+		
+		.picturify .front .page-banner-thin {
+			background-color: rgba(0, 0, 0, 0.52);
+			padding: 1% 5%;
+		}
+		
+		.picturify .front .page-banner-thin p {
+			font-size: 1em;
+		}
+		/* elevation */
+		
+		.picturify .front .elevation {
+			background-color: rgba(0, 0, 0, 0.27);
+			width: 100%;
+			height: 350px;
+		}
+		
+		.picturify .front .elevation * {
+			height: 100%;
+		}
+		
+		@media only screen and (min-width: 1000px) {
+			.picturify .back img {
+				width: inherit;
+			}
+		}
+		</style>
+
+		<div class="picturify">
+			<!-- background -->
+			<div class="back">
+				<img src="{{background}}" alt="" />
+			</div>
+			<!-- foreground -->
+			<div class="front">
+				<div class="page-banner-thin">
+					<h5 class="white-text">{{name}}</h5>
+				</div>
+				<div class="elevation">
+					<content></content>
+				</div>
+			</div>
+		</div>
+
+	</template>
+
+	<script>
+	Polymer({
+
+		is: 'picturify-header',
+
+		properties: {
+			background: {
+				type: String,
+				value: 'https://static.pexels.com/photos/6778/landscape-mountains-skyline-metal-large.jpg',
+			},
+			name: {
+				type: String,
+				value: 'just kiddin <3',
+			}
+		}
+	});
+	</script>
+</dom-module>
