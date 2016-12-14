@@ -1,6 +1,7 @@
 # our case		 #
 ##################
 node_modules/
+.idea
 
 
 
