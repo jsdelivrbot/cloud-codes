@@ -15,6 +15,7 @@ else:
 	# using the famous squre-root test for odd numbers
 	root = int(n**(.5))+1
 	for i in range(3, root, 2): # testing only for 3, 5, 7 ... by skiping evens
+								# this increases the speed by 50%
 		if n%i == 0:
 			n_is_prime = False
 			print(n, "is divisible by", i)
