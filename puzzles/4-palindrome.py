@@ -1,6 +1,5 @@
 # Palindrome
 # ==========================
-# see docs for more details
 
 # get string
 print("Tesing palindrome")

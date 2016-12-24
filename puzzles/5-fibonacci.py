@@ -1,6 +1,5 @@
 # nth Fibonacci
 # ==========================
-# see docs for more details
 
 # initialize
 x =0

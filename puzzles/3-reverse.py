@@ -1,6 +1,6 @@
 # Reversing string
 # ==========================
-# see docs  for more details
+
 
 # get string
 s = input("give the string to reverse: ")

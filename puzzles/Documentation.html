@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solutions</title>
+<link rel="stylesheet" href="https://stackedit.io/res-min/themes/base.css" />
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body><div class="container"><h1 id="solutions">SOLUTIONS</h1>
+
+<p>Vajahath Ahmed, <br>
+vajuoff.1@gmail.com</p>
+
+<hr>
+
+
+
+<h3 id="prerequisite">Prerequisite</h3>
+
+<ul>
+<li>Python 3 should be installed.</li>
+</ul>
+
+
+
+<h3 id="how-to-run-programs">How to run programs?</h3>
+
+
+
+<pre class="prettyprint"><code class="language-shell hljs ruby"><span class="hljs-variable">$ </span>python filename.py</code></pre>
+
+<p>some systems require <code>python3</code> instead of <code>python</code></p>
+
+<hr>
+
+
+
+<h2 id="1-prime-finder">1. Prime-Finder</h2>
+
+<blockquote>
+  <p><strong>Q:</strong> Given number <code>n</code>, write a function that will determine whether n is prime or not. What is the optimal way to do this?</p>
+</blockquote>
+
+
+
+<h3 id="answer">Answer:</h3>
+
+<p><strong>Language</strong>: <code>python</code> <br>
+<strong>File</strong>: <code>1-prime-finder.py</code></p>
+
+<p>Used the square-root test to detect prime numbers. <br>
+<em>[code is self explanatory]</em></p>
+
+
+
+<h2 id="2-duplicate-filter">2. Duplicate Filter</h2>
+
+<blockquote>
+  <p><strong>Q:</strong> You are given an array with integers between 1 and 1,000,000. One integer is in the array twice. How can you determine which one? Can you think of a way to do it using little extra memory.</p>
+</blockquote>
+
+
+
+<h3 id="answer-1">Answer</h3>
+
+<p><strong>Language</strong>: <code>python</code> <br>
+<strong>File</strong>: <code>2-duplicate-filter.py</code></p>
+
+
+
+<h4 id="method"><strong>Method</strong></h4>
+
+<ul>
+<li>Populate an array with 1500 random elements <em>(assuming that this can be extended up to 1,000,000)</em>, out of which one element is duplicated.</li>
+<li>Sort the array using the builtin <code>sort()</code> method of python.  <br>
+<strong>why the builtin <code>sort()</code> method?</strong> <br>
+<code>sort()</code> uses an algorithm called <a href="https://en.wikipedia.org/wiki/Timsort">Timsort</a>, which is well optimised. According to Wikipedia,</li>
+</ul>
+
+<blockquote>
+  <p>Timsort is a hybrid sorting algorithm, derived from merge sort and <br>
+  insertion sort, designed to perform well on many kinds of real-world <br>
+  data. It was invented by Tim Peters in 2002 for use in the Python <br>
+  programming language. The algorithm finds subsets of the data that are <br>
+  already ordered, and uses the subsets to sort the data more <br>
+  efficiently. This is done by merging an identified subset, called a <br>
+  run, with existing runs until certain criteria are fulfilled. Timsort <br>
+  has been Python’s standard sorting algorithm since version 2.3. It is <br>
+  now also used to sort arrays in Java SE 7, and on the Android <br>
+  platform.</p>
+</blockquote>
+
+<ul>
+<li>Iterate over the array to find an adjacent dual occurrence of the same element.</li>
+</ul>
+
+
+
+<h4 id="a-view-on-memory-utilisation"><strong>A view on memory utilisation</strong></h4>
+
+<p><em>(ignore the sorting phase)</em> <br>
+This program uses only a single variable <code>i</code> to iterate and check. <em>So least extra memory utilisation</em>.</p>
+
+
+
+<pre class="prettyprint"><code class="language-python hljs "><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>, list_end - list_start-<span class="hljs-number">1</span>):
+    <span class="hljs-keyword">if</span> numberList[i]==numberList[i+<span class="hljs-number">1</span>]:
+        print(<span class="hljs-string">"*************"</span>)
+        print(<span class="hljs-string">"answer: "</span>, numberList[i])
+        <span class="hljs-keyword">break</span></code></pre>
+
+
+
+<h2 id="3-reverse-words">3. Reverse words</h2>
+
+<blockquote>
+  <p><strong>Q:</strong> Reverse words in a string (words are separated by one or more spaces). Now do it in-place.</p>
+</blockquote>
+
+
+
+<h3 id="answer-2">Answer</h3>
+
+<p><strong>File</strong>: <code>3-reverse.py</code></p>
+
+
+
+<h4 id="method-1"><strong>Method</strong></h4>
+
+<ul>
+<li>Split the given sentence into words and store it as an array.</li>
+<li>Reversing the array is easy enough.</li>
+<li>Joining the array back to sentence is even simpler.</li>
+</ul>
+
+<p><em>[code is self explanatory]</em></p>
+
+
+
+<h2 id="4-palindrome">4. Palindrome</h2>
+
+<blockquote>
+  <p><strong>Q:</strong> Write code to check if a string is a palindrome or not</p>
+</blockquote>
+
+
+
+<h3 id="answer-3">Answer</h3>
+
+<p><strong>File</strong>: <code>4-palindrome.py</code></p>
+
+
+
+<h4 id="method-2">Method</h4>
+
+<p>Look it from both ends.</p>
+
+
+
+<h2 id="5-fibonacci">5. Fibonacci</h2>
+
+<blockquote>
+  <p><strong>Q:</strong> Write a function to print the n-th Fibonacci number</p>
+</blockquote>
+
+
+
+<h3 id="answer-4">Answer</h3>
+
+<p><strong>File:</strong> <code>5-fibonacci.py</code></p>
+
+
+
+<h4 id="method-3">Method</h4>
+
+<p>Used the non-recursive algorithm.</p>
+
+
+
+<h2 id="6-random-numbers">6. Random numbers</h2>
+
+<blockquote>
+  <p><strong>Q:</strong> Write code to generate random number between a max and min</p>
+</blockquote>
+
+
+
+<h3 id="answer-5">Answer</h3>
+
+<p><strong>File:</strong> <code>6-randomize.py</code></p>
+
+
+
+<h4 id="method-followed">Method followed</h4>
+
+<ul>
+<li>We need a source that gives random values to generate a random number.</li>
+<li>The most easiest one we can use to generate random number is <code>datetime</code>, but wait, its not random.</li>
+<li>To make it random, I md5 hashed the current date time. Now it gives a hexadecimal value.</li>
+<li>Change it to decimal. That’s a very large number.</li>
+<li>Shrink it to the provided limit by doing :</li>
+</ul>
+
+
+
+<pre class="prettyprint"><code class=" hljs glsl"> (large_rand_value % (<span class="hljs-built_in">max</span>-<span class="hljs-built_in">min</span>))+<span class="hljs-built_in">min</span></code></pre>
+
+<ul>
+<li>done.</li>
+</ul>
+
+
+
+<h4 id="why-i-used-md5-hash">Why I used md5 hash?</h4>
+
+<p>If I don’t use md5, the resulting value someway depends on the previous value. Because, time is in a progressing function.</p>
+
+<p><code>md5("this is a tea cup")</code> and <code>md5("this is a tea cup_")</code> are entirely different: like that <code>md5(cuttent_time_in_millisec)</code> and <code>md5(cuttent_time_in_millisec + 1)</code> are entirely different.</p>
+
+<p>So this method gives a good randomness. </p>
+
+
+
+<h2 id="7-binary-search">7. Binary Search</h2>
+
+<blockquote>
+  <p><strong>Q:</strong> Implement binary search of a sorted array of integers.</p>
+</blockquote>
+
+
+
+<h3 id="answer-6">Answer</h3>
+
+<p><strong>File: </strong> <code>7-bin-search.py</code></p>
+
+<p>Programmed in the common binary-search way.</p>
+
+
+
+<h2 id="8-square-root-function">8. Square Root function</h2>
+
+<blockquote>
+  <p><strong>Q:</strong> Implement a square root function</p>
+</blockquote>
+
+
+
+<h3 id="answer-7">Answer</h3>
+
+<p><strong>File: </strong> <code>8-sqrt.py</code></p>
+
+
+
+<pre class="prettyprint"><code class=" hljs fix"><span class="hljs-attribute">2 </span>=<span class="hljs-string"> 4^.5</span></code></pre>
+
+
+
+<h2 id="b1-zeros">b1. Zeros</h2>
+
+<blockquote>
+  <p><strong>Q: </strong> Without using a calculator, how many zeros are at the end of “100!”?</p>
+</blockquote>
+
+
+
+<h3 id="answer-8">Answer</h3>
+
+<p><strong>24 zeros</strong></p>
+
+
+
+<h4 id="how-i-found-it">How I found it?</h4>
+
+<p><em>By looking at the pattern.</em></p>
+
+<ul>
+<li>Multiplying by any multiples of <code>10</code> produce trailing zeros. Thus, <br>
+<ul><li><code>10</code> produces <code>1</code> zero,</li>
+<li><code>100</code> produces <code>2</code> zero</li>
+<li>and so on..</li></ul></li>
+<li>Any of <code>(2, 5)</code>, <code>4, 5</code>, <code>(8, 5)</code> produces a trailing zero at the end result. <br>
+<ul><li><code>5</code> is common in every tuple.</li>
+<li>But if we multiply 3 tuples together, <code>5*2*4*8 = 320</code> it wont produce <code>3</code>, but  <code>1</code> trailing zero. So we don’t want want to count all of those tuples, but any of those tuples.</li>
+<li><code>5*5 * 2*4*8 = 1600</code> : 2 zeros <br>
+<ul><li><strong>So number of <code>5</code>s matters.</strong> So, <br>
+<ul><li>25 has 2 fives (5*5)</li>
+<li>50 has 2 fives (5*5*2)</li>
+<li>75 has 2 fives (5*5*3)</li></ul></li></ul></li></ul></li>
+<li>Start counting: <br>
+<ul><li>10, 20, 30, …, 90 :9 tens are being multiplied together -&gt; produces <strong>9 zeros</strong>.</li>
+<li>There is a 100 being multiplied at the end -&gt; produces <strong>2 zeros</strong></li>
+<li>counting tuples similar to <code>(4, 5)</code>: <br>
+<ul><li>(4,5), (14, 15), …, (94, 95) : 10 tuples should produce <em>at lest 10 zeros</em>.</li>
+<li>here, there are 3 numbers which need special attention: <em>the</em> 25, 50 &amp; 75. They produce double zeros, whereas we counted only once in the above step. So <em>add 3 more to it</em>.</li>
+<li>So at the end of this step, we have <strong>13 zeros</strong> from this step.</li></ul></li></ul></li>
+<li>9 zeros + 2 zeros + 13 zeros = <strong>24 zeros</strong></li>
+</ul>
+
+
+
+<h4 id="verification">Verification</h4>
+
+<p>Run the file <code>facto.py</code> and give the <code>factorial limit</code> to <code>100</code>. It shows the zero’s spikes.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> <code>facto.py</code> is not optimised for higher values.</p>
+</blockquote>
+
+
+
+<h2 id="b2-anagrams">b2. Anagrams</h2>
+
+<blockquote>
+  <p><strong>Q:</strong> Given an English word in the form of a string, how can you quickly find all valid anagrams for that string (all valid rearrangements of the letters that form valid English words)? You are allowed to pre‐compute  whatever  you want to and store Whatever you optionally pre‐compute on disk.</p>
+</blockquote>
+
+
+
+<h3 id="answer-9">Answer</h3>
+
+<p><strong>File</strong>:  <code>b2-anagrams.py</code> <br>
+<strong>Anagram source file:</strong> <code>anagrams-raw.txt</code></p>
+
+<blockquote>
+  <p><em>These are some words to try while running the program:</em> <code>came, beast, name, angle, are ...</code> <br>
+  The raw file stores <code>870</code> anagrams. See the file to find more.</p>
+</blockquote>
+
+
+
+<h4 id="file-structure">File Structure</h4>
+
+<p>File structure is important to run this program. This program utilities 3 (more correctly, 2) files to run faster.</p>
+
+<ul>
+<li><code>anagrams-raw.txt</code> file stores some list of English words which has anagrams. It is copied form <a href="http://www.english-for-students.com/Complete-List-of-Anagrams.html">here</a>. Content of this file is unusable until we compile it. If you need to update anagram list,  <br>
+<ul><li>add those words in this file and</li>
+<li>recompile it.</li>
+<li>compiling this file will generate/ update the following files.</li></ul></li>
+<li><code>anagrams-compiled.json</code> file stores the JSON formatted compiled version of anagrams. <br>
+<ul><li>Basically it is an array of arrays.</li>
+<li>Words in each sub-arrays are anagrams of one of its word.</li></ul></li>
+<li><code>anagrams-map.json</code> is a hash map. It maps <code>id</code> of each possible anagrams to its corresponding words in <code>anagrams-compiled.json</code> using array index pointer.</li>
+</ul>
+
+
+
+<h4 id="algorithm">Algorithm</h4>
+
+<ol>
+<li>Get a good list of anagrams and copy it to <code>anagrams-raw.txt</code>.</li>
+<li>Compile <code>anagrams-raw.txt</code> to generate other 2 supporting files.</li>
+<li>Load the generated files to program. <br>
+<ol><li><code>hash = anagrams-map.json</code></li>
+<li><code>list = anagrams-compiled.json</code></li></ol></li>
+<li>Prompt the user to type a word to find anagrams.</li>
+<li>Get the word and force it to lowercase.</li>
+<li>Sort the letters.</li>
+<li>Lookup in the hash-map with the sorted letters as <code>key</code> for more insights as <code>index = hash.key</code>: <br>
+<ol><li>If <code>index</code> is <code>null</code>, no anagrams found. (the database is insufficient to find anagrams)</li>
+<li>else, retrieve the list of words as <code>anagrams = list[index]</code></li>
+<li>Print <code>anagrams</code>.</li></ol></li>
+</ol>
+
+
+
+<h4 id="what-is-precompile-flag-in-the-program">What is <code>PRECOMPILE</code> flag in the program?</h4>
+
+<p>Set this flag to start the program with compiling the anagram source file <code>anagrams-raw.txt</code>. It is not necessary to compile this every time if the source file is not changed.</p>
+
+
+
+<h4 id="why-the-compiled-files-are-formatted-as-json">Why the compiled files are formatted as JSON?</h4>
+
+<p>JSON is the most popular and useful way of representing data. This file can be utilized in other platforms and languages. A sort of <em>“one way fits all”</em>. </p>
+
+
+
+<h2 id="b3-messenger">b3. Messenger</h2>
+
+<blockquote>
+  <p><strong>Q:</strong> Describe a design for an instant messaging program where there are several servers , clients are connected to each server, and the servers communicate with each other. Describe the classes, interfaces, and soon that you would use and how you would organize them.</p>
+</blockquote>
+
+
+
+<h3 id="answer-10">Answer</h3>
+
+
+
+<h4 id="simpler-one">Simpler one.</h4>
+
+<p><strong>Broadcast messages sent by clients with appropriate headers to all servers.</strong></p>
+
+
+
+<pre class="prettyprint"><code class=" hljs brainfuck">   <span class="hljs-comment">S1</span> &lt;<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span>&gt; <span class="hljs-comment">S2</span> &lt;<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span>&gt; <span class="hljs-comment">S3</span>
+   <span class="hljs-comment">|</span>                     <span class="hljs-comment">|</span>                   <span class="hljs-comment">|</span>
+   <span class="hljs-comment">c1</span>                    <span class="hljs-comment">c2</span>                  <span class="hljs-comment">c3</span>
+
+<span class="hljs-comment">S*</span> <span class="hljs-literal">-</span> <span class="hljs-comment">servers</span>
+<span class="hljs-comment">c*</span> <span class="hljs-literal">-</span> <span class="hljs-comment">clients</span></code></pre>
+
+<p>A simple method is to broadcast data including the message to all servers. <br>
+Format:</p>
+
+
+
+<pre class="prettyprint"><code class="language-json hljs ">{
+    "<span class="hljs-attribute">senderId</span>": <span class="hljs-value"><span class="hljs-string">"ccB3x"</span></span>,
+    "<span class="hljs-attribute">receiverId</span>": <span class="hljs-value"><span class="hljs-string">"nbb5yu"</span></span>,
+    "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"Kity is so fluffy"</span></span>,
+    "<span class="hljs-attribute">datetime</span>": <span class="hljs-value"><span class="hljs-number">5665181164</span>
+</span>}</code></pre>
+
+<p>All servers should have a port listening to these messages and if any server detects the intended receiver under them, it will push the message to that client. Otherwise ignored. <br>
+Each server should keep an up-to-date list of all clients under that server.</p>
+
+<blockquote>
+  <p>Sometimes ago, I’ve created a browser based chat application that runs in similar (not exact) broadcasting fashion. <a href="https://mycolorpad.blogspot.in/2015/12/talky-documentation.html">Talky Messenger</a>.</p>
+</blockquote>
+
+
+
+<h4 id="more-efficient">More Efficient</h4>
+
+<p><strong>Use a hash map</strong></p>
+
+
+
+<pre class="prettyprint"><code class=" hljs brainfuck">                <span class="hljs-literal">+</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">+</span>
+   <span class="hljs-literal">+</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span>&gt;<span class="hljs-comment">|</span> <span class="hljs-comment">HASH</span><span class="hljs-literal">-</span><span class="hljs-comment">MAP</span><span class="hljs-literal">-</span><span class="hljs-comment">SYNC</span> <span class="hljs-comment">|</span>&lt;<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">+</span>
+   <span class="hljs-comment">|</span>            <span class="hljs-literal">+</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">+</span>            <span class="hljs-comment">|</span>
+   <span class="hljs-comment">|</span>                     <span class="hljs-comment">|</span>                   <span class="hljs-comment">|</span>
+   <span class="hljs-comment">S1</span> &lt;<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span>&gt; <span class="hljs-comment">S2</span> &lt;<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span>&gt; <span class="hljs-comment">S3</span>
+   <span class="hljs-comment">|</span>                     <span class="hljs-comment">|</span>                   <span class="hljs-comment">|</span>
+   <span class="hljs-comment">c1</span><span class="hljs-string">,</span><span class="hljs-comment">c2</span>                 <span class="hljs-comment">c3</span><span class="hljs-string">,</span><span class="hljs-comment">c4</span><span class="hljs-string">,</span><span class="hljs-comment">c5</span>            <span class="hljs-comment">c6</span></code></pre>
+
+<p>The previous method creates more network traffic. To handle that we create a hash of all clients and its servers. A sync service updates every record in all servers when a new client joins or leaves a specific server.</p>
+
+<p>So each server can directly send messages and need of  abroad cast is avoided.</p>
+
+<p>A sample hash for the above scenario:</p>
+
+
+
+<pre class="prettyprint"><code class="language-javascript hljs "><span class="hljs-keyword">let</span> hash = {
+    <span class="hljs-string">"c1"</span>: <span class="hljs-string">"s1"</span>,
+    <span class="hljs-string">"c2"</span>: <span class="hljs-string">"s1"</span>,
+    <span class="hljs-string">"c3"</span>: <span class="hljs-string">"s2"</span>,
+    <span class="hljs-string">"c4"</span>: <span class="hljs-string">"s2"</span>,
+    <span class="hljs-string">"c5"</span>: <span class="hljs-string">"s2"</span>,
+    <span class="hljs-string">"c6"</span>: <span class="hljs-string">"s3"</span>
+}</code></pre>
+
+<p>now we can locate the server address where recipient <code>c3</code> belongs to as:</p>
+
+
+
+<pre class="prettyprint"><code class="language-javascript hljs "><span class="hljs-keyword">let</span> location = hash.s3 <span class="hljs-comment">// returns "s2"</span></code></pre>
+
+
+
+<h2 id="b4-linked-lists">b4. Linked Lists</h2>
+
+<blockquote>
+  <p>How can one determine whether a singly linked list has a cycle?</p>
+</blockquote>
+
+
+
+<h3 id="answer-11">Answer</h3>
+
+
+
+<h4 id="method-4">Method</h4>
+
+<ul>
+<li>Write function to detect loops.</li>
+<li>Test is with a good case and bad case.</li>
+</ul>
+
+
+
+<h4 id="how-the-program-detects-loops">How the program detects loops?</h4>
+
+
+
+<pre class="prettyprint"><code class=" hljs brainfuck">   <span class="hljs-comment">HEAD==</span>&gt;<span class="hljs-title">[</span><span class="hljs-comment">4</span> <span class="hljs-comment">*</span><span class="hljs-title">]</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span>&gt;<span class="hljs-title">[</span><span class="hljs-comment">5</span> <span class="hljs-comment">*</span><span class="hljs-title">]</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span>&gt;<span class="hljs-title">[</span><span class="hljs-comment">7</span> <span class="hljs-comment">*</span><span class="hljs-title">]</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span>&gt;<span class="hljs-title">[</span><span class="hljs-comment">3</span> <span class="hljs-comment">*</span><span class="hljs-title">]</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span>&gt;<span class="hljs-title">[</span><span class="hljs-comment">1</span> <span class="hljs-comment">*</span><span class="hljs-title">]</span>
+                             <span class="hljs-comment">^</span>                   <span class="hljs-comment">|</span>
+                             <span class="hljs-comment">|</span>                   <span class="hljs-comment">|</span>
+                             <span class="hljs-literal">+</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">+</span></code></pre>
+
+<p>If LL has a loop, when we traverse the LL we reach a position we already reached. So this program grabs each linked list and stores its pointer to an array. When finished, it looks for duplicate pointers. If found, loops are there.</p>
+
+
+
+<h2 id="b5-binary-search-tree">b5. Binary Search Tree</h2>
+
+<blockquote>
+  <p><strong>Q:</strong> Write a function to determine whether a given binary tree of distinct integers is a valid binary search tree . Assume that each node contains a pointer to its left child, a pointer to its right child, and an integer, but not a pointer to its parent.You may use any language you like.</p>
+</blockquote>
+
+
+
+<h3 id="answer-12">Answer</h3>
+
+<p>Since there is no pointer to a nodes parent, we cant use the common traversal algorithms. <br>
+So I used a kind of continues replacement algorithm. Which perform the logic as follows:</p>
+
+<p>Consider this tree:</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs tex">                        ROOT
+                         |
+                         V
+                         5
+                       /    <span class="hljs-command">\
+</span>                    3         7
+                 /   <span class="hljs-command">\ </span>    /    <span class="hljs-command">\
+</span>               1      4   6     10
+</code></pre>
+
+<p>Create an array with continuously replacing the nodes in a level. Now, do that <code>d</code> times where <code>d</code> is the depth.</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs vhdl">depth, d = <span class="hljs-number">3</span>
+i = <span class="hljs-number">1</span>   [L(<span class="hljs-number">5</span>),<span class="hljs-number">5</span>,R(<span class="hljs-number">5</span>)]
+i = <span class="hljs-number">2</span>   [L(<span class="hljs-number">3</span>),<span class="hljs-number">3</span>,R(<span class="hljs-number">3</span>),<span class="hljs-number">5</span>,R(<span class="hljs-number">5</span>)]
+        [L(<span class="hljs-number">3</span>),<span class="hljs-number">3</span>,R(<span class="hljs-number">3</span>),<span class="hljs-number">5</span>,L(<span class="hljs-number">7</span>),<span class="hljs-number">7</span>,R(<span class="hljs-number">7</span>)]
+i = <span class="hljs-number">3</span>   [<span class="hljs-keyword">NULL</span>,<span class="hljs-number">1</span>,<span class="hljs-keyword">NULL</span>,<span class="hljs-number">3</span>,<span class="hljs-keyword">NULL</span>,<span class="hljs-number">4</span>,<span class="hljs-keyword">NULL</span>,<span class="hljs-number">5</span>,<span class="hljs-keyword">NULL</span>,<span class="hljs-number">6</span>,<span class="hljs-keyword">NULL</span>,<span class="hljs-number">7</span>,<span class="hljs-keyword">NULL</span>,<span class="hljs-number">10</span>,<span class="hljs-keyword">NULL</span>]
+
+clean <span class="hljs-keyword">NULL</span> s =&gt;
+[<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">10</span>]
+
+<span class="hljs-keyword">If</span> it <span class="hljs-keyword">is</span> sorted, the BST <span class="hljs-keyword">is</span> valid. <span class="hljs-keyword">Else</span> invalid.
+</code></pre>
+
+<hr>
+
+<p>Vajahath Ahmed <br>
+<a href="https://mycolorpad.blogspot.in">mycolorpad.blogspot.in</a></p></div></body>
+</html>

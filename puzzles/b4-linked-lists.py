@@ -8,7 +8,6 @@ def isLooped(l):
 	for i in l:
 		pointers.append(i[1])
 	pointers.sort()
-	# print(pointers)
 	# loop and detect duplicates
 	for i in range(0, len(pointers)-1):
 		if pointers[i] == pointers[i+1]:
